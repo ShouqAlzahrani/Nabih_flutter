@@ -3,6 +3,8 @@ import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:nabih/core/Route.dart';
 import 'package:nabih/screens/edit.dart';
+import 'package:nabih/screens/login.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Setting extends StatefulWidget {
   const Setting({
@@ -239,11 +241,63 @@ class _SettingState extends State<Setting> {
                     SvgPicture.asset('img/call.svg'),
                   ],
                 ),
+                GestureDetector(
+                  onTap: (){
+                    openLogoutDialog(context);
+                  }
+                  ,
+                  child: Row(
+                    children: [
+                      const Text(
+                        'تسجيل الخروج',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 26,
+                        ),
+                      ),
+                      const Spacer(),
+                      Icon(Icons.logout,
+                      color: Color(0xff0d5536),)
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
         ),
       ),
     );
+
   }
+  void openLogoutDialog (context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context){
+          return AlertDialog(
+            title: Text('هل انت متأكد ؟'),
+            actions: [
+              TextButton(
+
+                child: Text('لا',style: TextStyle(color: Color(0xff0d5536),),),
+                onPressed: ()=> Navigator.pop(context),
+              ),
+              TextButton(
+                child: Text('نعم',style: TextStyle(color: Color(0xff0d5536),),),
+                onPressed: ()async{
+                  Navigator.pop(context);
+                  // await   AppService().sendPostRequest(context.read<SignInBloc>().uid!,"تم تسجيل الخروج",4);
+                  final SharedPreferences sp = await SharedPreferences.getInstance();
+                  sp.clear();
+                  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Login()), (route) => false);
+
+
+                },
+              )
+            ],
+          );
+        }
+    );
+  }
+
 }

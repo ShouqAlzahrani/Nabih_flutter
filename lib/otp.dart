@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nabih/MainButton.dart';
 import 'package:nabih/core/Route.dart';
 import 'package:nabih/register.dart';
+import 'package:nabih/screens/login.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class Otp extends StatefulWidget {
@@ -120,7 +121,7 @@ class _OtpState extends State<Otp> {
                     Navigator.pushReplacement<void, void>(
                       context,
                       MaterialPageRoute<void>(
-                        builder: (BuildContext context) => const Register(),
+                        builder: (BuildContext context) => const Login(),
                       ),
                     );
                   }),

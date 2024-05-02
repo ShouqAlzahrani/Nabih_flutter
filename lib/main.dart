@@ -5,6 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nabih/firebase_options.dart';
 import 'package:nabih/screens/Setting.dart';
+import 'package:nabih/screens/splash.dart';
 import 'package:nabih/screens/start.dart';
 import 'package:nabih/widgets/bottomNavigationBar.dart';
 
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
           seedColor: Colors.white,
         ),
       ),
-      home: const StartPage(),
+      home:  SplashPage(),
     );
   }
 }
@@ -135,7 +136,7 @@ class market extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 20),
-            const Align(
+             Align(
               alignment: Alignment.topRight,
               child: Padding(
                 padding: EdgeInsets.only(right: 10),

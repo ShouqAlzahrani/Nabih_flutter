@@ -37,7 +37,7 @@ class TransactionLog extends StatelessWidget {
               Container(
                 height: 50,
                 decoration: const BoxDecoration(color: Color(0xff024232), borderRadius: BorderRadius.all(Radius.circular(16))),
-                child: const Row(
+                child:  Row(
                   children: [
                     SizedBox(width: 20),
                     Expanded(
@@ -83,7 +83,7 @@ class TransactionLog extends StatelessWidget {
               const SizedBox(height: 20),
               Container(
                 decoration: const BoxDecoration(color: Color.fromARGB(255, 1, 46, 35), borderRadius: BorderRadius.all(Radius.circular(15))),
-                child: const Padding(
+                child:  Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Column(
                     children: [
@@ -161,7 +161,7 @@ class TransactionLog extends StatelessWidget {
               ),
               Container(
                 decoration: const BoxDecoration(color: Color.fromARGB(255, 1, 46, 35), borderRadius: BorderRadius.all(Radius.circular(15))),
-                child: const Padding(
+                child:  Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Column(
                     children: [
@@ -239,7 +239,7 @@ class TransactionLog extends StatelessWidget {
               ),
               Container(
                 decoration: const BoxDecoration(color: Color.fromARGB(255, 1, 46, 35), borderRadius: BorderRadius.all(Radius.circular(15))),
-                child: const Padding(
+                child:  Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Column(
                     children: [

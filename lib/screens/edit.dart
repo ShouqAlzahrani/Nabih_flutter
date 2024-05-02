@@ -309,7 +309,7 @@ class EditDone extends StatelessWidget {
                   MainButton(
                     text: 'نعم',
                     onTap: () {
-                      navigateTo(context, const Done());
+                      navigateTo(context, const DoneTrue());
                     },
                     color: const Color(0xffA27D27).withOpacity(0.99),
                   ),
@@ -331,8 +331,8 @@ class EditDone extends StatelessWidget {
   }
 }
 
-class Done extends StatelessWidget {
-  const Done({super.key});
+class DoneTrue extends StatelessWidget {
+  const DoneTrue({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -361,7 +361,7 @@ class Done extends StatelessWidget {
               height: 60,
             ),
             const Text(
-              'تم التعديل بنجاح',
+              'تم التنفيذ بنجاح',
               style: TextStyle(
                 color: Color(0xffffffff),
                 fontWeight: FontWeight.bold,

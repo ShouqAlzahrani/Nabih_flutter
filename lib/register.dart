@@ -1,4 +1,3 @@
-import 'dart:html';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +9,8 @@ import 'package:nabih/main.dart';
 import 'package:nabih/widgets/bottomNavigationBar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'done.dart';
 
 final _formKey = GlobalKey<FormState>();
 TextEditingController _fullNameController = TextEditingController();
@@ -312,17 +313,23 @@ class Register extends StatelessWidget {
                                 'email': _emailController.text,
                                 'id_number': _idNumberController.text,
                                 'birth_date': _birthDateController.text,
+                                'wallet_balance': 0,
                               }).onError((e, _) =>
                                       print("Error writing document: $e"));
 
                               final SharedPreferences sp =
                                   await SharedPreferences.getInstance();
                               sp.setBool('signed_in', true);
+                              sp.setString('full_name', _fullNameController.text);
+                              sp.setString('username', _usernameController.text);
+                              sp.setString('email', _emailController.text);
+                              sp.setString('uid', userID!);
+
                               Navigator.pushReplacement<void, void>(
                                 context,
                                 MaterialPageRoute<void>(
                                   builder: (BuildContext context) =>
-                                      const HomePage(),
+                                      Done(),
                                 ),
                               );
                             } on FirebaseAuthException catch (e) {
@@ -349,7 +356,8 @@ class Register extends StatelessWidget {
                             //   'birth_date': _birthDateController.text,
                             // });
                           }),
-                    )
+                    ),
+
                   ],
                 ),
               ),

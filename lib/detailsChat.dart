@@ -27,7 +27,7 @@ class DetailsChat extends StatelessWidget {
                   child: Row(
                     children: [
                       Image.asset('img/tu.png'),
-                      const Column(
+                       Column(
                         children: [
                           Text(
                             'تركي ال شيخ ',

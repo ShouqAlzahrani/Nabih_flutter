@@ -67,7 +67,7 @@ class Recommendations extends StatelessWidget {
                               'الان  .  stc',
                               style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
                             ),
-                            SvgPicture.asset('img/sbs.svg')
+                            SvgPicture.asset('img/sms.svg')
                           ],
                         ),
                         const Text(
@@ -111,7 +111,7 @@ class Recommendations extends StatelessWidget {
                               'الان  .  zain',
                               style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
                             ),
-                            SvgPicture.asset('img/sbs.svg')
+                            SvgPicture.asset('img/sms.svg')
                           ],
                         ),
                         const Text(
@@ -160,7 +160,7 @@ class Recommendations extends StatelessWidget {
                               'الان  .  stc',
                               style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
                             ),
-                            SvgPicture.asset('img/sbs.svg')
+                            SvgPicture.asset('img/sms.svg')
                           ],
                         ),
                         const Text(
