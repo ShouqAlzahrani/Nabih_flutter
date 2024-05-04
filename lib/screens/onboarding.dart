@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:nabih/auth/Auth.dart';
 import 'package:nabih/main.dart';
+
+import '../widgets/onBoardingWidget.dart';
+import 'login.dart';
 
 class OnboardingScreen extends StatelessWidget {
   final PageController _pageController = PageController();
@@ -34,7 +36,7 @@ class OnboardingScreen extends StatelessWidget {
                       Column(
                         children: [
                           const Text(
-                            'سؤال 1 من 4 ',
+                            'سؤال ١ من ٤ ',
                             style: TextStyle(color: Color(0xff27944a), fontSize: 20),
                           ),
                           Container(
@@ -407,7 +409,7 @@ class OnboardingScreen extends StatelessWidget {
                                           Navigator.pushReplacement<void, void>(
                                             context,
                                             MaterialPageRoute<void>(
-                                              builder: (BuildContext context) => const Auth(),
+                                              builder: (BuildContext context) =>  Login(),
                                             ),
                                           );
                                         },
@@ -430,7 +432,7 @@ class OnboardingScreen extends StatelessWidget {
                                           Navigator.pushReplacement<void, void>(
                                             context,
                                             MaterialPageRoute<void>(
-                                              builder: (BuildContext context) => const Auth(),
+                                              builder: (BuildContext context) => const Login(),
                                             ),
                                           );
                                         },
@@ -453,7 +455,7 @@ class OnboardingScreen extends StatelessWidget {
                                           Navigator.pushReplacement<void, void>(
                                             context,
                                             MaterialPageRoute<void>(
-                                              builder: (BuildContext context) => const Auth(),
+                                              builder: (BuildContext context) => const Login(),
                                             ),
                                           );
                                         },

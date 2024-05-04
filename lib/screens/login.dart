@@ -5,12 +5,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:nabih/MainButton.dart';
+import 'package:nabih/widgets/MainButton.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../done.dart';
+import 'done.dart';
 import '../main.dart';
-import '../register.dart';
+import 'register.dart';
 
 
 final _formKey = GlobalKey<FormState>();
@@ -24,15 +24,15 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SafeArea(
-          child: Container(
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('img/edit.png'),
-                  fit: BoxFit.cover,
-                ),
+        body: Container(
+            width: double.infinity,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('img/edit.png'),
+                fit: BoxFit.cover,
               ),
+            ),
+            child: SafeArea(
               child: ListView(
                 children: [
                   Padding(
@@ -43,10 +43,9 @@ class Login extends StatelessWidget {
                         const SizedBox(
                           height: 60,
                         ),
-                        const Align(
-                          alignment: Alignment.center,
-                          child: Text(
-                            'تسجيل الدخول',
+                        Center(
+                          child: const Text(
+                            'ابدأ رحلتك التعليمية مع نبيـــه ',
                             style: TextStyle(
                               color: Color(0xffffffff),
                               fontWeight: FontWeight.bold,
@@ -231,18 +230,33 @@ print('login attempt');
 
                                 await  Navigator.push(context, MaterialPageRoute(
                                     builder: (context) => Register()));
-                                // if(context.read<SignInBloc>().isSignedIn)      nextScreen(context, DonePage());
-
-
                               },
                             )
                             ,),
                         ),
+                        const SizedBox(
+                          height: 60,
+                        ),
+                        Center(
+                          child: const Text(
+                            'أو التسجيل من خلال',
+                            style: TextStyle(
+                              color: Color(0xffffffff),
+                              fontWeight: FontWeight.w400,
+                              fontSize: 15,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Center(child: Image.asset('img/Social.png'))
                       ],
                     ),
                   ),
+
                 ],
-              )),
-        ));
+              ),
+            )));
   }
 }

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:nabih/core/Route.dart';
-import 'package:nabih/detailsChat.dart';
+
+import 'detailsChat.dart';
 
 class Chat extends StatelessWidget {
   const Chat({super.key});

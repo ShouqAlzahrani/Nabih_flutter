@@ -1,9 +1,34 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:nabih/MainButton.dart';
+import 'package:nabih/widgets/MainButton.dart';
+import 'package:nabih/core/Route.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class Recommendations extends StatelessWidget {
+import 'assetDetaisl.dart';
+
+class Recommendations extends StatefulWidget {
   const Recommendations({super.key});
+
+  @override
+  State<Recommendations> createState() => _RecommendationsState();
+}
+
+class _RecommendationsState extends State<Recommendations> {
+
+  int stcAsset=0;
+  int zainAsset=0;
+  int mobilyAsset=0;
+  double? walletBalance=0;
+
+
+  void initState() {
+    Future.delayed(Duration(seconds: 0), () async {
+      walletBalance = await readWalletBalance();
+
+      setState(() {});
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +100,10 @@ class Recommendations extends StatelessWidget {
                           textAlign: TextAlign.center,
                           style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
                         ),
-                        MainButton(height: 30, text: 'شِراء', onTap: () {})
+                        MainButton(height: 30, text: 'شِراء', onTap: () {
+                          navigateTo(context, AssetDetails( quantity: stcAsset, price: 40, walletBalance: walletBalance!, asset: 1,));
+
+                        })
                       ],
                     ),
                   ),
@@ -123,7 +151,12 @@ class Recommendations extends StatelessWidget {
                           height: 30,
                           text: 'بيع',
                           color: Colors.red,
-                          onTap: () {},
+                          onTap: () {
+                            navigateTo(context, AssetDetails( quantity: zainAsset, price: 25, walletBalance: walletBalance!, asset: 2,));
+
+
+
+                          },
                         ),
                       ],
                     ),
@@ -168,7 +201,11 @@ class Recommendations extends StatelessWidget {
                           textAlign: TextAlign.center,
                           style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
                         ),
-                        MainButton(height: 30, text: 'شِراء', onTap: () {})
+                        MainButton(height: 30, text: 'شِراء', onTap: () {
+
+                          navigateTo(context, AssetDetails( quantity: stcAsset, price: 40, walletBalance: walletBalance!, asset: 1,));
+
+                        })
                       ],
                     ),
                   ),
@@ -179,5 +216,31 @@ class Recommendations extends StatelessWidget {
         ),
       ),
     );
+  }
+  Future<double?> readWalletBalance() async {
+    try {
+      final SharedPreferences sp = await SharedPreferences.getInstance();
+      final docRef = FirebaseFirestore.instance
+          .collection('users')
+          .doc(sp.getString('uid'));
+      final docSnapshot = await docRef.get();
+
+      if (docSnapshot.exists) {
+        final data = docSnapshot.data();
+        if (data != null && data.containsKey('wallet_balance')) {
+          stcAsset=data['stc'];
+          zainAsset=data['zain'];
+          mobilyAsset=data['mobily'];
+          return data['wallet_balance']!
+              .toDouble(); // Assuming the field is a String
+        } else {
+          print("Field wallet_balance not found in document");
+          return 0;
+        }
+      }
+    } catch (error) {
+      print("Error reading data: $error");
+      return 0;
+    }
   }
 }

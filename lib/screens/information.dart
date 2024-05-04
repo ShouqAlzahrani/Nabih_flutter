@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/svg.dart';
 
 class Information extends StatelessWidget {
   const Information({super.key});
@@ -398,12 +397,3 @@ class Information extends StatelessWidget {
       );
 }
 
-void verification(context) => showDialog(
-    context: context,
-    builder: (context) =>  AlertDialog(
-          backgroundColor: Color(0xff30A146),
-          title: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [],
-          ),
-        ));

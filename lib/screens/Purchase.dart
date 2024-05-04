@@ -93,19 +93,18 @@ class _SellAndPurchaseScreenState extends State<SellAndPurchaseScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        // Decrement button
-                        Flexible( // Wrap with Flexible for separator space
+                        Flexible(
                           child: IconButton(
-                            icon: Icon(Icons.add, color: Colors.white), // White icon for better visibility
+                            icon: Icon(Icons.add, color: Colors.white),
                             onPressed: increment,
                           ),
                         ),
-                        VerticalDivider( // Vertical separator
-                          color: Colors.white30, // Adjust divider color
-                          thickness: 2.5, // Adjust divider thickness
+                        VerticalDivider(
+                          color: Colors.white30,
+                          thickness: 2.5,
                         ),
-                        // Number display and total price
-                        Flexible( // Wrap with Flexible for separator space
+
+                        Flexible(
                           child: Column(
                             children: [
                               Text(
@@ -143,6 +142,11 @@ class _SellAndPurchaseScreenState extends State<SellAndPurchaseScreen> {
 
                 InkWell(
                   onTap: () async {
+                  if(counter==0)return;
+              bool result =  await    showConfirmationSheet(context , "ماتقوم به سيؤثر على رصيدك في المحفظة"+"\n"+
+              "هل تريد الإستمرار؟");
+              if(result!=true)return;
+
 if(widget.isPurchase) {
   Map<String, dynamic> updateData;
 
@@ -150,12 +154,15 @@ if(widget.isPurchase) {
   if (widget.asset == 1)
     updateData = {'wallet_balance': balance, 'stc': counter+widget.currentQuantity};
   else if (widget.asset == 2)
-    updateData = {'wallet_balance': balance, 'zein': counter+widget.currentQuantity};
+    updateData = {'wallet_balance': balance, 'zain': counter+widget.currentQuantity};
   else
     updateData = {'wallet_balance': balance, 'mobily':  counter+widget.currentQuantity};
 
 
   updateFirestore(updateData);
+
+
+  insertToOrders(widget.asset,counter,widget.price,true);
 }else{
   Map<String, dynamic> updateData;
 
@@ -163,12 +170,13 @@ if(widget.isPurchase) {
   if (widget.asset == 1)
     updateData = {'wallet_balance': balance, 'stc': widget.currentQuantity-counter};
   else if (widget.asset == 2)
-    updateData = {'wallet_balance': balance, 'zein': widget.currentQuantity-counter};
+    updateData = {'wallet_balance': balance, 'zain': widget.currentQuantity-counter};
   else
     updateData = {'wallet_balance': balance, 'mobily': widget.currentQuantity-counter};
 
 
   updateFirestore(updateData);
+  insertToOrders(widget.asset,counter,widget.price,false);
 }
 Navigator.pushReplacement<void, void>(
   context,
@@ -184,7 +192,7 @@ Navigator.pushReplacement<void, void>(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.0), // Optional: rounded corners
                       gradient: LinearGradient(
-                        colors: [Colors.amber[800]!, Colors.yellow[700]!], // Gold gradient colors
+                        colors: [Color(0xffD8C97D),Color(0xffA27D27)], // Gold gradient colors
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                       ),
@@ -228,5 +236,166 @@ Navigator.pushReplacement<void, void>(
       print('Error updating Firestore field(s): $e');
       // Handle errors (e.g., show a snackbar to the user)
     }
+  }
+}
+Future<bool> showConfirmationSheet(BuildContext context, String message) async {
+  final result = await showModalBottomSheet(
+    context: context,
+    isDismissible: false,
+    enableDrag: false,
+    builder: (context) => Container(
+      height:
+      MediaQuery.of(context).size.height * 0.6,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20.0)),
+
+        image: DecorationImage(
+          image: AssetImage("img/new.png"), // Replace with your image path
+          fit: BoxFit.fill,
+        ),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+
+          Image.asset('img/done.png'),
+          Text(
+            message,
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 18.0,color: Colors.white), // Adjust text style
+          ),
+
+          SizedBox(height: 20,),
+          Padding(
+            padding: const EdgeInsets.only(left :16,right: 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                InkWell(
+                  onTap: () {
+                    Navigator.pop(context, true);
+
+                  },
+                  child: Container(
+                    width: 100,
+                      height: 45,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.0), // Optional: rounded corners
+                        gradient: LinearGradient(
+                          colors: [Color(0xffD8C97D),Color(0xffA27D27)], // Gold gradient colors
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5), // Shadow color
+                            spreadRadius: 2.0, // Adjust shadow spread
+                            blurRadius: 4.0, // Adjust shadow blur
+                            offset: Offset(0, 1), // Adjust shadow offset
+                          ),
+                        ],
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Center(
+                          child: const Text('نعم',
+                              style: TextStyle(
+                                fontSize: 16,
+
+                                color: Colors.white,
+                              )),
+                        ),
+                      )),
+                ),
+                InkWell(
+                  onTap: () {
+             Navigator.pop(context, false);
+
+                  },
+                  child: Container(
+                    width: 100,
+                      height: 45,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.0), // Optional: rounded corners
+                        gradient: LinearGradient(
+                          colors: [Color(0xffD8C97D),Color(0xffA27D27)], // Gold gradient colors
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5), // Shadow color
+                            spreadRadius: 2.0, // Adjust shadow spread
+                            blurRadius: 4.0, // Adjust shadow blur
+                            offset: Offset(0, 1), // Adjust shadow offset
+                          ),
+                        ],
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Center(
+                          child: const Text('لا',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.white,
+                              )),
+                        ),
+                      )),
+                ),
+              ],
+            ),
+          ),
+
+        ],
+      ),
+    ),
+  );
+  return result;
+}
+Future<int> updateCounter() async {
+  final firestore = FirebaseFirestore.instance;
+  final docRef = firestore.collection('counters').doc("gEuCzlO3y9qFuvHDKD34");
+
+  try {
+    final doc = await docRef.get();
+    final currentCount = doc.data()?['ordersCounter'] ?? 0;
+
+    final newCount = currentCount + 1;
+    await docRef.update({'ordersCounter': newCount});
+
+    print('Counter updated successfully!');
+    return newCount;
+  } catch (e) {
+    print('Error updating counter: $e');
+  }
+  return 0;
+}
+
+Future<void> insertToOrders(
+    int assetCode,
+    int quantity,
+    double price,
+    bool isPurchase,
+    ) async {
+  final firestore = FirebaseFirestore.instance;
+  final collectionRef = firestore.collection('orders');
+
+  final id = await updateCounter();
+  final SharedPreferences sp = await SharedPreferences.getInstance();
+  final data = {
+    'assetCode': assetCode,
+    'quantity': quantity,
+    'price': price,
+    'isPurchase': isPurchase,
+    'date': FieldValue.serverTimestamp(),
+    'uid':sp.getString('uid'),
+    'idCounter':id,
+  };
+
+  try {
+    await collectionRef.doc().set(data);
+    print('Order added successfully!');
+  } catch (e) {
+    print('Error adding data: $e');
   }
 }

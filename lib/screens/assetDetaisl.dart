@@ -136,75 +136,77 @@ backgroundColor: Colors.black,
                   ),
                   SizedBox(height: 40,),
 
-                  Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 50.0,left: 50),
+                    child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
 
 
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.circular(15.0),
-                      ),
-                      child: InkWell(
-                        onTap: (){                          navigateTo(context,SellAndPurchaseScreen(price: model!.price, walletBalance: widget.walletBalance, currentQuantity: model!.quantity, asset: widget.asset, isPurchase: false,));
-                        },
-                        borderRadius: BorderRadius.circular(15.0),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
-                                children: [
-                                  Text('بيع', style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.w500)),
-                                  SizedBox(height: 10,),
-                                  Text(model!.price.toStringAsFixed(2), style: TextStyle(color: Colors.white,fontSize: 16,fontWeight: FontWeight.w800)),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
+                        child: InkWell(
+                          onTap: (){                          navigateTo(context,SellAndPurchaseScreen(price: model!.price, walletBalance: widget.walletBalance, currentQuantity: model!.quantity, asset: widget.asset, isPurchase: false,));
+                          },
+                          borderRadius: BorderRadius.circular(15.0),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  children: [
+                                    Text('بيع', style: TextStyle(color: Colors.white,fontSize: 16,fontWeight: FontWeight.w500)),
+                                    // SizedBox(height: 3,),
+                                    Text(model!.price.toStringAsFixed(2), style: TextStyle(color: Colors.white,fontSize: 14,fontWeight: FontWeight.w800)),
 
-                                ],
-                              ),
-                              Icon(Icons.download, color: Colors.white),
-                            ],
+                                  ],
+                                ),
+                                Icon(Icons.download, color: Colors.white),
+                              ],
+                            ),
                           ),
                         ),
+                        height: 60,
+                        width: 140,
                       ),
-                      height: 80,
-                      width: 140,
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.green,
-                        borderRadius: BorderRadius.circular(15.0),
-                      ),
-                      child: InkWell(
-                        onTap: (){
-                          navigateTo(context,SellAndPurchaseScreen(price: model!.price, walletBalance: widget.walletBalance, currentQuantity: model!.quantity, asset: widget.asset, isPurchase: true,));
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.green,
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
+                        child: InkWell(
+                          onTap: (){
+                            navigateTo(context,SellAndPurchaseScreen(price: model!.price, walletBalance: widget.walletBalance, currentQuantity: model!.quantity, asset: widget.asset, isPurchase: true,));
 
-                        },
-                        borderRadius: BorderRadius.circular(15.0),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
-                                children: [
-                                  Text('شراء', style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.w500)),
-                                SizedBox(height: 10,),
-                                  Text(model!.price.toStringAsFixed(2), style: TextStyle(color: Colors.white,fontSize: 16,fontWeight: FontWeight.w800)),
+                          },
+                          borderRadius: BorderRadius.circular(15.0),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  children: [
+                                    Text('شراء', style: TextStyle(color: Colors.white,fontSize: 16,fontWeight: FontWeight.w500)),
+                                    Text(model!.price.toStringAsFixed(2), style: TextStyle(color: Colors.white,fontSize: 14,fontWeight: FontWeight.w800)),
 
-                                ],
-                              ),
-                              Icon(Icons.upload, color: Colors.white),
-                            ],
+                                  ],
+                                ),
+                                Icon(Icons.upload, color: Colors.white),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      height: 80,
-                      width: 140,
-                    )
-                  ],
-                )
+                        height: 60,
+                        width: 140,
+                      )
+                    ],
+                ),
+                  )
                 ]
 
               ),

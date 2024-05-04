@@ -8,7 +8,7 @@ import 'package:nabih/screens/login.dart';
 import 'package:nabih/screens/start.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../register.dart';
+import 'register.dart';
 
 class SplashPage extends StatefulWidget {
   SplashPage({Key? key,}) : super(key: key);
@@ -57,8 +57,9 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
 
-        backgroundColor: Colors.black,
+        backgroundColor: const Color(0xff0E1210),
         body: Container(
+          color:const Color(0xff0E1210),
           height: double.infinity,
           width: double.infinity,
           // color: Colors.black,

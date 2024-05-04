@@ -1,26 +1,17 @@
-// ignore_for_file: unused_field, unused_element, deprecated_member_use, file_names
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:nabih/chat.dart';
+import 'package:nabih/screens/chat.dart';
 import 'package:nabih/core/Route.dart';
-import 'package:nabih/information.dart';
-import 'package:nabih/screens/Paymentcards.dart';
-import 'package:nabih/screens/Purchase.dart';
 import 'package:nabih/screens/Recommendations.dart';
 import 'package:nabih/screens/Setting.dart';
 import 'package:nabih/screens/TransactionLog.dart';
 import 'package:nabih/screens/assetDetaisl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../done.dart';
 import '../screens/edit.dart';
-
-/// Flutter code sample for [BottomNavigationBar].
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key});
@@ -34,32 +25,31 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   static final List _widgetOptions = <Widget>[
     Scaffold(
-      body: SafeArea(
-          child: Container(
+      body: Container(
         color: const Color(0xff0E1210),
         width: double.infinity,
         child: Column(
-          children: [
-            const SizedBox(height: 20),
-            const Align(
-              alignment: Alignment.topRight,
-              child: Padding(
-                padding: EdgeInsets.only(right: 10),
-                child: Text(
-                  'السوق',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 26,
-                  ),
-                ),
+      children: [
+        const SizedBox(height: 20),
+        const Align(
+          alignment: Alignment.topRight,
+          child: Padding(
+            padding: EdgeInsets.only(right: 10),
+            child: Text(
+              'السوق',
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 26,
               ),
             ),
-            const SizedBox(height: 20),
-            Image.asset('img/Group4.png'),
-          ],
+          ),
         ),
-      )),
+        const SizedBox(height: 20),
+        Image.asset('img/Group4.png'),
+      ],
+        ),
+      ),
     ),
     const Home(),
     const Wallet(),
@@ -508,7 +498,7 @@ class _HomeState extends State<Home> {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10.0), // Optional: rounded corners
                               gradient: LinearGradient(
-                                colors: [Colors.amber[800]!, Colors.yellow[700]!], // Gold gradient colors
+                                colors: [Color(0xffD8C97D),Color(0xffA27D27)], // Gold gradient colors
                                 begin: Alignment.topLeft,
                                 end: Alignment.bottomRight,
                               ),
@@ -546,7 +536,7 @@ class _HomeState extends State<Home> {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10.0), // Optional: rounded corners
                               gradient: LinearGradient(
-                                colors: [Colors.amber[800]!, Colors.yellow[700]!], // Gold gradient colors
+                                colors: [Color(0xffD8C97D),Color(0xffA27D27)], // Gold gradient colors
                                 begin: Alignment.topLeft,
                                 end: Alignment.bottomRight,
                               ),
@@ -656,9 +646,13 @@ class _HomeState extends State<Home> {
 
   void showMyBottomSheet(BuildContext context) {
     showModalBottomSheet(
-        context: context,
-        isScrollControlled: true, // Adjust if content might overflow
-        builder: (context) => AccountRechargeSheet());
+      context: context,
+      isScrollControlled: true,
+      builder: (context) => ClipRRect(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20.0)),
+        child: AccountRechargeSheet(),
+      ),
+    );
   }
 }
 
@@ -691,8 +685,8 @@ class _AccountRechargeSheetState extends State<AccountRechargeSheet> {
           MediaQuery.of(context).size.height * 0.4, // Adjust height as needed
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("img/Standard.png"), // Replace with your image path
-          fit: BoxFit.cover,
+          image: AssetImage("img/new.png"), // Replace with your image path
+           fit: BoxFit.fill,
         ),
       ),
       child: Stack(
@@ -740,7 +734,7 @@ class _AccountRechargeSheetState extends State<AccountRechargeSheet> {
     decoration: BoxDecoration(
     borderRadius: BorderRadius.circular(10.0), // Optional: rounded corners
     gradient: LinearGradient(
-    colors: [Colors.amber[800]!, Colors.yellow[700]!], // Gold gradient colors
+    colors: [Color(0xffD8C97D),Color(0xffA27D27)], // Gold gradient colors
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
     ),
@@ -749,7 +743,7 @@ class _AccountRechargeSheetState extends State<AccountRechargeSheet> {
     color: Colors.grey.withOpacity(0.5), // Shadow color
     spreadRadius: 2.0, // Adjust shadow spread
     blurRadius: 4.0, // Adjust shadow blur
-    offset: Offset(0, 3), // Adjust shadow offset
+    offset: Offset(0, 1), // Adjust shadow offset
     ),
     ],
     ),

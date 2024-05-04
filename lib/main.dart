@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nabih/firebase_options.dart';
+import 'package:nabih/screens/LineChartSample.dart';
 import 'package:nabih/screens/Setting.dart';
 import 'package:nabih/screens/splash.dart';
 import 'package:nabih/screens/start.dart';
@@ -55,7 +56,7 @@ class _HomePageState extends State<HomePage> {
   TextStyle optionStyle = const TextStyle(
       fontSize: 30, fontWeight: FontWeight.w500, color: Color(0xff30A146));
   final List<Widget> _children = [
-    const market(),
+     LineChartSample(),
     const Home(),
     const Wallet(),
     const Setting(),
@@ -121,80 +122,6 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class market extends StatelessWidget {
-  const market({
-    super.key,
-  });
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-          child: Container(
-        color: const Color(0xff0E1210),
-        width: double.infinity,
-        child: Column(
-          children: [
-            const SizedBox(height: 20),
-             Align(
-              alignment: Alignment.topRight,
-              child: Padding(
-                padding: EdgeInsets.only(right: 10),
-                child: Row(
-                  children: [
-                    Text(
-                      'السوق',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 26,
-                      ),
-                    ),
-                    Spacer(),
-                    SizedBox(width: 8)
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(height: 20),
-            Image.asset('img/Group4.png'),
-          ],
-        ),
-      )),
-    );
-  }
-}
 
-class OnboardingPage extends StatelessWidget {
-  final Color color;
-  final widget;
-  final text;
-  final VoidCallback onPressed;
 
-  const OnboardingPage({
-    super.key,
-    required this.color,
-    required this.onPressed,
-    this.widget,
-    this.text,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Column(
-          children: [
-            const SizedBox(height: 20),
-            Text(
-              text,
-              style: const TextStyle(color: Colors.white, fontSize: 18),
-            ),
-            const SizedBox(height: 20),
-            widget,
-          ],
-        ),
-      ),
-    );
-  }
-}
