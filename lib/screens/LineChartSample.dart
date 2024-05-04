@@ -158,7 +158,7 @@ class _LineChartSampleState extends State<LineChartSample> {
                       Row(children: [
                         GestureDetector(
                           onTap:(){
-                            _showDialogWithInfo(context,'السعر الفعلي','يمثل اللون الذهبي بالبيان السعر الفعلي للسهم في الفترة المعروضة');
+                            _showDialogWithInfo(context,'السعر الفعلي','يمثل اللون الاخضر بالبيان السعر الفعلي للسهم في الفترة المعروضة');
                           },
                           child: Container(
                             width: 40,
