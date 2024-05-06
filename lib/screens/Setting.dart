@@ -16,7 +16,21 @@ class Setting extends StatefulWidget {
 
 class _SettingState extends State<Setting> {
   final _controller08 = ValueNotifier<bool>(false);
-  final _controller = ValueNotifier<bool>(false);
+  String name='';
+
+  @override
+  void initState() {
+    Future.delayed(const Duration(seconds: 0), () async {
+      final SharedPreferences sp = await SharedPreferences.getInstance();
+      name=sp.getString('username')!;
+      setState(() {
+
+      });
+    });
+
+    // TODO: implement initState
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,8 +67,8 @@ class _SettingState extends State<Setting> {
                     const SizedBox(
                       width: 10,
                     ),
-                    const Text(
-                      'أهلاً شوق!',
+                     Text(
+                      'أهلاً ${name!} !',
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
@@ -272,62 +286,66 @@ class _SettingState extends State<Setting> {
                     ],
                   ),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text('تابعنا', style: TextStyle(fontSize: 20, color: Colors.white)),
-                    Row(
-                      // Center the icons horizontally using MainAxisAlignment.center
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        IconButton(
-                          onPressed: () {
-                            openLink(context, 'x.com/ksanabih');
-                          },
-                          icon: ClipRRect(
-                            // Apply rounded corners using ClipRRect
-                            borderRadius: BorderRadius.circular(5.0), // Adjust as desired
-                            child: Image.asset(
-                              'img/twitter.png',
-                              width: 30,
-                              height: 30,
-                              color: Color(0xff0d5536),
+                Spacer(),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 50),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text('تابعنا', style: TextStyle(fontSize: 20, color: Colors.white)),
+                      Row(
+                        // Center the icons horizontally using MainAxisAlignment.center
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          IconButton(
+                            onPressed: () {
+                              openLink(context, 'x.com/ksanabih');
+                            },
+                            icon: ClipRRect(
+                              // Apply rounded corners using ClipRRect
+                              borderRadius: BorderRadius.circular(5.0), // Adjust as desired
+                              child: Image.asset(
+                                'img/twitter.png',
+                                width: 30,
+                                height: 30,
+                                color: Color(0xff0d5536),
+                              ),
                             ),
                           ),
-                        ),
-                        SizedBox(width: 10.0), // Add spacing between buttons (optional)
-                        IconButton(
-                          onPressed: () {
-                            openLink(context, 'instagram.com/ksanabih');
-                          },
-                          icon: ClipRRect(
-                            borderRadius: BorderRadius.circular(5.0),
-                            child: Image.asset(
-                              'img/instagram.png',
-                              width: 30,
-                              height: 30,
-                              color: Color(0xff0d5536),
+                          SizedBox(width: 10.0), // Add spacing between buttons (optional)
+                          IconButton(
+                            onPressed: () {
+                              openLink(context, 'instagram.com/ksanabih');
+                            },
+                            icon: ClipRRect(
+                              borderRadius: BorderRadius.circular(5.0),
+                              child: Image.asset(
+                                'img/instagram.png',
+                                width: 30,
+                                height: 30,
+                                color: Color(0xff0d5536),
+                              ),
                             ),
                           ),
-                        ),
-                        SizedBox(width: 10.0), // Add spacing between buttons (optional)
-                        IconButton(
-                          onPressed: () {
-                            openLink(context, 'linkedin.com/ksanabih');
-                          },
-                          icon: ClipRRect(
-                            borderRadius: BorderRadius.circular(5.0),
-                            child: Image.asset(
-                              'img/linkedin.png',
-                              width: 30,
-                              height: 30,
-                              color: Color(0xff0d5536),
+                          SizedBox(width: 10.0), // Add spacing between buttons (optional)
+                          IconButton(
+                            onPressed: () {
+                              openLink(context, 'linkedin.com/ksanabih');
+                            },
+                            icon: ClipRRect(
+                              borderRadius: BorderRadius.circular(5.0),
+                              child: Image.asset(
+                                'img/linkedin.png',
+                                width: 30,
+                                height: 30,
+                                color: Color(0xff0d5536),
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
                 
               ],

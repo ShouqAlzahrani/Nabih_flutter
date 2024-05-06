@@ -67,9 +67,12 @@ class _LineChartSampleState extends State<LineChartSample> {
                         children: [
                           Text('٤١٫٩٥ ر.س',style: TextStyle(fontSize: 20,color: Colors.white,fontWeight:FontWeight.w800 ),),
                           Text('⬍ اليوم + ٢٫٣٥ (١٫٩٠٪)',style: TextStyle(fontSize: 14,color: Colors.green,fontWeight:FontWeight.w800 ),),
-
                         ],
-                      )
+                      ),
+                      Spacer(),
+
+                      Image.asset('img/filter.png',width: 30,height: 30,)
+
                     ],
                   ),
                 ),

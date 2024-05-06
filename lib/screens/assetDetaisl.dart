@@ -9,7 +9,8 @@ class AssetDetails extends StatefulWidget {
   double price;
   double walletBalance;
   int asset; //1 stc // 2 zain // 3 mobily
-   AssetDetails({Key? key,required this.quantity,required this.price , required this.walletBalance,required this.asset}) : super(key: key);
+  int entryMethod; //0 all // 1 buy // 2 sell
+   AssetDetails({Key? key,required this.quantity,required this.price , required this.walletBalance,required this.asset,required this.entryMethod}) : super(key: key);
 
   @override
   State<AssetDetails> createState() => _AssetDetailsState();
@@ -136,14 +137,81 @@ backgroundColor: Colors.black,
                   ),
                   SizedBox(height: 40,),
 
-                  Padding(
+                  widget.entryMethod!=2?SizedBox.shrink(): Center(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                      child: InkWell(
+                        onTap: (){                          navigateTo(context,SellAndPurchaseScreen(price: model!.price, walletBalance: widget.walletBalance, currentQuantity: model!.quantity, asset: widget.asset, isPurchase: false,));
+                        },
+                        borderRadius: BorderRadius.circular(15.0),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                children: [
+                                  Text('بيع', style: TextStyle(color: Colors.white,fontSize: 16,fontWeight: FontWeight.w500)),
+                                  // SizedBox(height: 3,),
+                                  Text(model!.price.toStringAsFixed(2), style: TextStyle(color: Colors.white,fontSize: 14,fontWeight: FontWeight.w800)),
+
+                                ],
+                              ),
+                              Icon(Icons.download, color: Colors.white),
+                            ],
+                          ),
+                        ),
+                      ),
+                      height: 60,
+                      width: 140,
+                    ),
+                  ),
+
+                  widget.entryMethod!=1?SizedBox.shrink():   Center(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.green,
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                      child: InkWell(
+                        onTap: (){
+                          navigateTo(context,SellAndPurchaseScreen(price: model!.price, walletBalance: widget.walletBalance, currentQuantity: model!.quantity, asset: widget.asset, isPurchase: true,));
+
+                        },
+                        borderRadius: BorderRadius.circular(15.0),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                children: [
+                                  Text('شراء', style: TextStyle(color: Colors.white,fontSize: 16,fontWeight: FontWeight.w500)),
+                                  Text(model!.price.toStringAsFixed(2), style: TextStyle(color: Colors.white,fontSize: 14,fontWeight: FontWeight.w800)),
+
+                                ],
+                              ),
+                              Icon(Icons.upload, color: Colors.white),
+                            ],
+                          ),
+                        ),
+                      ),
+                      height: 60,
+                      width: 140,
+                    ),
+                  ),
+
+
+                  widget.entryMethod!=0?SizedBox.shrink():    Padding(
                     padding: const EdgeInsets.only(right: 50.0,left: 50),
                     child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
 
-
-                      Container(
+Container(
                         decoration: BoxDecoration(
                           color: Colors.red,
                           borderRadius: BorderRadius.circular(15.0),

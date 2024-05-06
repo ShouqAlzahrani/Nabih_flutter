@@ -101,7 +101,7 @@ class _RecommendationsState extends State<Recommendations> {
                           style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
                         ),
                         MainButton(height: 30, text: 'شِراء', onTap: () {
-                          navigateTo(context, AssetDetails( quantity: stcAsset, price: 40, walletBalance: walletBalance!, asset: 1,));
+                          navigateTo(context, AssetDetails( quantity: stcAsset, price: 40, walletBalance: walletBalance!, asset: 1,entryMethod: 1,));
 
                         })
                       ],
@@ -152,7 +152,7 @@ class _RecommendationsState extends State<Recommendations> {
                           text: 'بيع',
                           color: Colors.red,
                           onTap: () {
-                            navigateTo(context, AssetDetails( quantity: zainAsset, price: 25, walletBalance: walletBalance!, asset: 2,));
+                            navigateTo(context, AssetDetails( quantity: zainAsset, price: 25, walletBalance: walletBalance!, asset: 2,entryMethod: 2,));
 
 
 
@@ -203,7 +203,7 @@ class _RecommendationsState extends State<Recommendations> {
                         ),
                         MainButton(height: 30, text: 'شِراء', onTap: () {
 
-                          navigateTo(context, AssetDetails( quantity: stcAsset, price: 40, walletBalance: walletBalance!, asset: 1,));
+                          navigateTo(context, AssetDetails( quantity: stcAsset, price: 40, walletBalance: walletBalance!, asset: 1,entryMethod: 1,));
 
                         })
                       ],

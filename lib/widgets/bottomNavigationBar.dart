@@ -598,7 +598,8 @@ class _HomeState extends State<Home> {
           navigateTo(context, AssetDetails(quantity: stcAsset,
           price: 40,
           walletBalance: walletBalance!,
-          asset: 1));
+          asset: 1,
+          entryMethod: 0,));
           },),
                 ListTile(
                   leading: Image.asset('img/Group3.png',),
@@ -609,7 +610,7 @@ class _HomeState extends State<Home> {
           navigateTo(context, AssetDetails(quantity: zainAsset,
           price: 25,
           walletBalance: walletBalance!,
-          asset: 2));
+          asset: 2,entryMethod: 0,));
           },),
                 ListTile(
                   leading: Image.asset('img/Group2.png',),
@@ -620,7 +621,7 @@ class _HomeState extends State<Home> {
                   navigateTo(context, AssetDetails(quantity: mobilyAsset,
                       price: 20,
                       walletBalance: walletBalance!,
-                      asset: 3));
+                      asset: 3,entryMethod: 0,));
                 },
                 ),
                 // InkWell(
