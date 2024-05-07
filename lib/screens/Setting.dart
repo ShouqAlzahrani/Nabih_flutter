@@ -16,21 +16,20 @@ class Setting extends StatefulWidget {
 
 class _SettingState extends State<Setting> {
   final _controller08 = ValueNotifier<bool>(false);
-  String name='';
+  String name = '';
 
   @override
   void initState() {
     Future.delayed(const Duration(seconds: 0), () async {
       final SharedPreferences sp = await SharedPreferences.getInstance();
-      name=sp.getString('username')!;
-      setState(() {
-
-      });
+      name = sp.getString('username')!;
+      setState(() {});
     });
 
     // TODO: implement initState
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,8 +57,8 @@ class _SettingState extends State<Setting> {
                   children: [
                     ClipRRect(
                         borderRadius: BorderRadius.circular(30.0),
-
-                        child: Image.asset('img/nabih.png',
+                        child: Image.asset(
+                          'img/nabih.png',
                           fit: BoxFit.cover,
                           width: 50,
                           height: 50,
@@ -67,7 +66,7 @@ class _SettingState extends State<Setting> {
                     const SizedBox(
                       width: 10,
                     ),
-                     Text(
+                    Text(
                       'أهلاً ${name!} !',
                       style: TextStyle(
                         color: Colors.white,
@@ -259,17 +258,20 @@ class _SettingState extends State<Setting> {
                     ),
                     const Spacer(),
                     // SvgPicture.asset('img/call.svg'),
-                    SizedBox(width: 10,),
-                    Icon(Icons.email,size: 30,
-
-                      color: Color(0xff0d5536),)
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Icon(
+                      Icons.email,
+                      size: 30,
+                      color: Color(0xff0d5536),
+                    )
                   ],
                 ),
                 GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     openLogoutDialog(context);
-                  }
-                  ,
+                  },
                   child: Row(
                     children: [
                       const Text(
@@ -281,8 +283,10 @@ class _SettingState extends State<Setting> {
                         ),
                       ),
                       const Spacer(),
-                      Icon(Icons.logout,
-                      color: Color(0xff0d5536),)
+                      Icon(
+                        Icons.logout,
+                        color: Color(0xff0d5536),
+                      )
                     ],
                   ),
                 ),
@@ -292,7 +296,8 @@ class _SettingState extends State<Setting> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text('تابعنا', style: TextStyle(fontSize: 20, color: Colors.white)),
+                      Text('تابعنا',
+                          style: TextStyle(fontSize: 20, color: Colors.white)),
                       Row(
                         // Center the icons horizontally using MainAxisAlignment.center
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -303,7 +308,8 @@ class _SettingState extends State<Setting> {
                             },
                             icon: ClipRRect(
                               // Apply rounded corners using ClipRRect
-                              borderRadius: BorderRadius.circular(5.0), // Adjust as desired
+                              borderRadius: BorderRadius.circular(
+                                  5.0), // Adjust as desired
                               child: Image.asset(
                                 'img/twitter.png',
                                 width: 30,
@@ -312,7 +318,9 @@ class _SettingState extends State<Setting> {
                               ),
                             ),
                           ),
-                          SizedBox(width: 10.0), // Add spacing between buttons (optional)
+                          SizedBox(
+                              width:
+                                  10.0), // Add spacing between buttons (optional)
                           IconButton(
                             onPressed: () {
                               openLink(context, 'instagram.com/ksanabih');
@@ -327,7 +335,9 @@ class _SettingState extends State<Setting> {
                               ),
                             ),
                           ),
-                          SizedBox(width: 10.0), // Add spacing between buttons (optional)
+                          SizedBox(
+                              width:
+                                  10.0), // Add spacing between buttons (optional)
                           IconButton(
                             onPressed: () {
                               openLink(context, 'linkedin.com/ksanabih');
@@ -347,44 +357,54 @@ class _SettingState extends State<Setting> {
                     ],
                   ),
                 ),
-                
               ],
             ),
           ),
         ),
       ),
     );
-
   }
-  void openLogoutDialog (context) {
+
+  void openLogoutDialog(context) {
     showDialog(
         context: context,
-        builder: (BuildContext context){
+        builder: (BuildContext context) {
           return AlertDialog(
             title: Text('هل انت متأكد ؟'),
             actions: [
               TextButton(
-
-                child: Text('لا',style: TextStyle(color: Color(0xff0d5536),),),
-                onPressed: ()=> Navigator.pop(context),
+                child: Text(
+                  'لا',
+                  style: TextStyle(
+                    color: Color(0xff0d5536),
+                  ),
+                ),
+                onPressed: () => Navigator.pop(context),
               ),
               TextButton(
-                child: Text('نعم',style: TextStyle(color: Color(0xff0d5536),),),
-                onPressed: ()async{
+                child: Text(
+                  'نعم',
+                  style: TextStyle(
+                    color: Color(0xff0d5536),
+                  ),
+                ),
+                onPressed: () async {
                   Navigator.pop(context);
                   // await   AppService().sendPostRequest(context.read<SignInBloc>().uid!,"تم تسجيل الخروج",4);
-                  final SharedPreferences sp = await SharedPreferences.getInstance();
+                  final SharedPreferences sp =
+                      await SharedPreferences.getInstance();
                   sp.clear();
-                  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Login()), (route) => false);
-
-
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => Login()),
+                      (route) => false);
                 },
               )
             ],
           );
-        }
-    );
+        });
   }
+
   Future openEmailSupport(context) async {
     final Uri params = Uri(
       scheme: 'mailto',
@@ -397,6 +417,7 @@ class _SettingState extends State<Setting> {
       // openToast1(context, "Can't open the email app");
     }
   }
+
   Future openUrlSupport(context) async {
     final Uri params = Uri(
       scheme: 'mailto',
@@ -409,6 +430,7 @@ class _SettingState extends State<Setting> {
       // openToast1(context, "Can't open the email app");
     }
   }
+
   Future openLink(context, String url) async {
     final Uri uri = Uri.parse(url);
     if (await canLaunchUrl(uri)) {

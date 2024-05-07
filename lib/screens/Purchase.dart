@@ -11,7 +11,14 @@ class SellAndPurchaseScreen extends StatefulWidget {
   final int asset;
   final bool isPurchase;
 
-  const SellAndPurchaseScreen({Key? key, required this.price,required this.walletBalance, required this.currentQuantity, required this.asset, required this.isPurchase}) : super(key: key);
+  const SellAndPurchaseScreen(
+      {Key? key,
+      required this.price,
+      required this.walletBalance,
+      required this.currentQuantity,
+      required this.asset,
+      required this.isPurchase})
+      : super(key: key);
 
   @override
   State<SellAndPurchaseScreen> createState() => _SellAndPurchaseScreenState();
@@ -19,7 +26,7 @@ class SellAndPurchaseScreen extends StatefulWidget {
 
 class _SellAndPurchaseScreenState extends State<SellAndPurchaseScreen> {
   int counter = 0;
-  double availableQuantityToBePaid =0;
+  double availableQuantityToBePaid = 0;
   void decrement() {
     if (counter - 1 > 0) {
       setState(() {
@@ -28,31 +35,31 @@ class _SellAndPurchaseScreenState extends State<SellAndPurchaseScreen> {
       });
     }
   }
-  double buyingAmount=0;
+
+  double buyingAmount = 0;
   void increment() {
-
-  if (counter + 1 <= availableQuantityToBePaid) {
-    setState(() {
-      counter++;
-      buyingAmount = counter * widget.price;
-    });
-
-}
+    if (counter + 1 <= availableQuantityToBePaid) {
+      setState(() {
+        counter++;
+        buyingAmount = counter * widget.price;
+      });
+    }
   }
-@override
-  void initState() {
 
-    if(widget.isPurchase) {
+  @override
+  void initState() {
+    if (widget.isPurchase) {
       if (widget.walletBalance > 0)
         availableQuantityToBePaid = widget.walletBalance / widget.price;
-    }
-    else{
-      availableQuantityToBePaid=widget.currentQuantity.toDouble();
+    } else {
+      availableQuantityToBePaid = widget.currentQuantity.toDouble();
     }
     // TODO: implement initState
     super.initState();
   }
-  String get totalPrice => (counter * widget.price).toStringAsFixed(2); // Calculate total price
+
+  String get totalPrice =>
+      (counter * widget.price).toStringAsFixed(2); // Calculate total price
 
   @override
   Widget build(BuildContext context) {
@@ -70,21 +77,29 @@ class _SellAndPurchaseScreenState extends State<SellAndPurchaseScreen> {
               icon: RotatedBox(
                 quarterTurns: 2, // Rotate 180 degrees (2 quarter turns)
                 child: Icon(Icons.arrow_back), // Your icon
-              ),// Use the Icons.arrow_back icon
+              ), // Use the Icons.arrow_back icon
               onPressed: () => Navigator.pop(context), // Pop the current screen
             ),
           ),
           SafeArea(
             child: Column(
               children: [
-                SizedBox(height: 40,),
-
-                Text(widget.isPurchase? 'يرجى تحديد عدد الأسهم التي ستقوم بشرائها؟':'يرجى تحديد عدد الأسهم التي ستقوم ببيعها؟',style: TextStyle(fontSize: 20,color: Colors.white),),
-                SizedBox(height: 100,),
+                SizedBox(
+                  height: 40,
+                ),
+                Text(
+                  widget.isPurchase
+                      ? 'يرجى تحديد عدد الأسهم التي ستقوم بشرائها؟'
+                      : 'يرجى تحديد عدد الأسهم التي ستقوم ببيعها؟',
+                  style: TextStyle(fontSize: 20, color: Colors.white),
+                ),
+                SizedBox(
+                  height: 100,
+                ),
                 Center(
                   child: Container(
                     height: 100,
-                    width: MediaQuery.of(context).size.width/1.5,
+                    width: MediaQuery.of(context).size.width / 1.5,
                     decoration: BoxDecoration(
                       color: Color(0xff0d5536),
                       borderRadius: BorderRadius.circular(10.0),
@@ -109,24 +124,34 @@ class _SellAndPurchaseScreenState extends State<SellAndPurchaseScreen> {
                             children: [
                               Text(
                                 'عدد الاسهم',
-                                style: TextStyle(fontSize: 14.0, color: Colors.white), // White text for better visibility
+                                style: TextStyle(
+                                    fontSize: 14.0,
+                                    color: Colors
+                                        .white), // White text for better visibility
                               ),
                               // SizedBox(height: 5,),
                               Text(
                                 '$counter',
-                                style: TextStyle(fontSize: 24.0, color: Colors.white), // White text for better visibility
+                                style: TextStyle(
+                                    fontSize: 24.0,
+                                    color: Colors
+                                        .white), // White text for better visibility
                               ),
-                           ],
+                            ],
                           ),
                         ),
-                        VerticalDivider( // Vertical separator
+                        VerticalDivider(
+                          // Vertical separator
                           color: Colors.white30, // Adjust divider color
                           thickness: 2.5, // Adjust divider thickness
                         ),
                         // Increment button
-                        Flexible( // Wrap with Flexible for separator space
+                        Flexible(
+                          // Wrap with Flexible for separator space
                           child: IconButton(
-                            icon: Icon(Icons.remove, color: Colors.white), // White icon for better visibility
+                            icon: Icon(Icons.remove,
+                                color: Colors
+                                    .white), // White icon for better visibility
                             onPressed: decrement,
                           ),
                         ),
@@ -134,65 +159,97 @@ class _SellAndPurchaseScreenState extends State<SellAndPurchaseScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: 40,),
-
-                Text(widget.isPurchase?'إجمالي عدد الحصص للشراء:':'إجمالي عدد الحصص للبيع:',style: TextStyle(fontSize: 16,color: Colors.white),),
-                Text(availableQuantityToBePaid.toStringAsFixed(2),style: TextStyle(fontSize: 14,color: Colors.white),),
-                SizedBox(height: 40,),
-
+                SizedBox(
+                  height: 40,
+                ),
+                Text(
+                  widget.isPurchase
+                      ? 'إجمالي عدد الحصص للشراء:'
+                      : 'إجمالي عدد الحصص للبيع:',
+                  style: TextStyle(fontSize: 16, color: Colors.white),
+                ),
+                Text(
+                  availableQuantityToBePaid.toStringAsFixed(2),
+                  style: TextStyle(fontSize: 14, color: Colors.white),
+                ),
+                SizedBox(
+                  height: 40,
+                ),
                 InkWell(
                   onTap: () async {
-                  if(counter==0)return;
-              bool result =  await    showConfirmationSheet(context , "ماتقوم به سيؤثر على رصيدك في المحفظة"+"\n"+
-              "هل تريد الإستمرار؟");
-              if(result!=true)return;
+                    if (counter == 0) return;
+                    bool result = await showConfirmationSheet(
+                        context,
+                        "ماتقوم به سيؤثر على رصيدك في المحفظة" +
+                            "\n" +
+                            "هل تريد الإستمرار؟");
+                    if (result != true) return;
 
-if(widget.isPurchase) {
-  Map<String, dynamic> updateData;
+                    if (widget.isPurchase) {
+                      Map<String, dynamic> updateData;
 
-  double balance = widget.walletBalance - buyingAmount;
-  if (widget.asset == 1)
-    updateData = {'wallet_balance': balance, 'stc': counter+widget.currentQuantity};
-  else if (widget.asset == 2)
-    updateData = {'wallet_balance': balance, 'zain': counter+widget.currentQuantity};
-  else
-    updateData = {'wallet_balance': balance, 'mobily':  counter+widget.currentQuantity};
+                      double balance = widget.walletBalance - buyingAmount;
+                      if (widget.asset == 1)
+                        updateData = {
+                          'wallet_balance': balance,
+                          'stc': counter + widget.currentQuantity
+                        };
+                      else if (widget.asset == 2)
+                        updateData = {
+                          'wallet_balance': balance,
+                          'zain': counter + widget.currentQuantity
+                        };
+                      else
+                        updateData = {
+                          'wallet_balance': balance,
+                          'mobily': counter + widget.currentQuantity
+                        };
 
+                      updateFirestore(updateData);
 
-  updateFirestore(updateData);
+                      insertToOrders(widget.asset, counter, widget.price, true);
+                    } else {
+                      Map<String, dynamic> updateData;
 
+                      double balance = widget.walletBalance + buyingAmount;
+                      if (widget.asset == 1)
+                        updateData = {
+                          'wallet_balance': balance,
+                          'stc': widget.currentQuantity - counter
+                        };
+                      else if (widget.asset == 2)
+                        updateData = {
+                          'wallet_balance': balance,
+                          'zain': widget.currentQuantity - counter
+                        };
+                      else
+                        updateData = {
+                          'wallet_balance': balance,
+                          'mobily': widget.currentQuantity - counter
+                        };
 
-  insertToOrders(widget.asset,counter,widget.price,true);
-}else{
-  Map<String, dynamic> updateData;
-
-  double balance = widget.walletBalance + buyingAmount;
-  if (widget.asset == 1)
-    updateData = {'wallet_balance': balance, 'stc': widget.currentQuantity-counter};
-  else if (widget.asset == 2)
-    updateData = {'wallet_balance': balance, 'zain': widget.currentQuantity-counter};
-  else
-    updateData = {'wallet_balance': balance, 'mobily': widget.currentQuantity-counter};
-
-
-  updateFirestore(updateData);
-  insertToOrders(widget.asset,counter,widget.price,false);
-}
-Navigator.pushReplacement<void, void>(
-  context,
-  MaterialPageRoute<void>(
-    builder: (BuildContext context) =>
-        DoneTrue(),
-  ),
-);
+                      updateFirestore(updateData);
+                      insertToOrders(
+                          widget.asset, counter, widget.price, false);
+                    }
+                    Navigator.pushReplacement<void, void>(
+                      context,
+                      MaterialPageRoute<void>(
+                        builder: (BuildContext context) => DoneTrue(),
+                      ),
+                    );
                   }, // Handle tap on the container
                   child: Container(
                     height: 50.0, // Set button height
-                    width: MediaQuery.of(context).size.width/1.5,
+                    width: MediaQuery.of(context).size.width / 1.5,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.0), // Optional: rounded corners
+                      borderRadius: BorderRadius.circular(
+                          10.0), // Optional: rounded corners
                       gradient: LinearGradient(
-                        colors: [Color(0xffD8C97D),Color(0xffA27D27)], // Gold gradient colors
+                        colors: [
+                          Color(0xffD8C97D),
+                          Color(0xffA27D27)
+                        ], // Gold gradient colors
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                       ),
@@ -207,14 +264,14 @@ Navigator.pushReplacement<void, void>(
                     ),
                     child: Center(
                       child: Text(
-                        widget.isPurchase? "الشراء بقيمة "+buyingAmount.toStringAsFixed(2)
-                        :"البيع بقيمة "+buyingAmount.toStringAsFixed(2),
-                          style: TextStyle(color: Colors.white, fontSize: 16.0),
+                        widget.isPurchase
+                            ? "الشراء بقيمة " + buyingAmount.toStringAsFixed(2)
+                            : "البيع بقيمة " + buyingAmount.toStringAsFixed(2),
+                        style: TextStyle(color: Colors.white, fontSize: 16.0),
                       ),
                     ),
                   ),
                 ),
-
               ],
             ),
           ),
@@ -222,12 +279,15 @@ Navigator.pushReplacement<void, void>(
       ),
     );
   }
+
   Future<void> updateFirestore(Map<String, dynamic> updateData) async {
     try {
       // Get a reference to the document
       final SharedPreferences sp = await SharedPreferences.getInstance();
 
-      final documentReference = FirebaseFirestore.instance.collection('users').doc(sp.getString('uid'));
+      final documentReference = FirebaseFirestore.instance
+          .collection('users')
+          .doc(sp.getString('uid'));
 
       // Update the specific fields
       await documentReference.update(updateData);
@@ -238,17 +298,16 @@ Navigator.pushReplacement<void, void>(
     }
   }
 }
+
 Future<bool> showConfirmationSheet(BuildContext context, String message) async {
   final result = await showModalBottomSheet(
     context: context,
     isDismissible: false,
     enableDrag: false,
     builder: (context) => Container(
-      height:
-      MediaQuery.of(context).size.height * 0.6,
+      height: MediaQuery.of(context).size.height * 0.6,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20.0)),
-
         image: DecorationImage(
           image: AssetImage("img/new.png"), // Replace with your image path
           fit: BoxFit.fill,
@@ -257,32 +316,36 @@ Future<bool> showConfirmationSheet(BuildContext context, String message) async {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-
           Image.asset('img/done.png'),
           Text(
             message,
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 18.0,color: Colors.white), // Adjust text style
+            style: TextStyle(
+                fontSize: 18.0, color: Colors.white), // Adjust text style
           ),
-
-          SizedBox(height: 20,),
+          SizedBox(
+            height: 20,
+          ),
           Padding(
-            padding: const EdgeInsets.only(left :16,right: 16),
+            padding: const EdgeInsets.only(left: 16, right: 16),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 InkWell(
                   onTap: () {
                     Navigator.pop(context, true);
-
                   },
                   child: Container(
-                    width: 100,
+                      width: 100,
                       height: 45,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.0), // Optional: rounded corners
+                        borderRadius: BorderRadius.circular(
+                            10.0), // Optional: rounded corners
                         gradient: LinearGradient(
-                          colors: [Color(0xffD8C97D),Color(0xffA27D27)], // Gold gradient colors
+                          colors: [
+                            Color(0xffD8C97D),
+                            Color(0xffA27D27)
+                          ], // Gold gradient colors
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
                         ),
@@ -301,7 +364,6 @@ Future<bool> showConfirmationSheet(BuildContext context, String message) async {
                           child: const Text('نعم',
                               style: TextStyle(
                                 fontSize: 16,
-
                                 color: Colors.white,
                               )),
                         ),
@@ -309,16 +371,19 @@ Future<bool> showConfirmationSheet(BuildContext context, String message) async {
                 ),
                 InkWell(
                   onTap: () {
-             Navigator.pop(context, false);
-
+                    Navigator.pop(context, false);
                   },
                   child: Container(
-                    width: 100,
+                      width: 100,
                       height: 45,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.0), // Optional: rounded corners
+                        borderRadius: BorderRadius.circular(
+                            10.0), // Optional: rounded corners
                         gradient: LinearGradient(
-                          colors: [Color(0xffD8C97D),Color(0xffA27D27)], // Gold gradient colors
+                          colors: [
+                            Color(0xffD8C97D),
+                            Color(0xffA27D27)
+                          ], // Gold gradient colors
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
                         ),
@@ -345,13 +410,13 @@ Future<bool> showConfirmationSheet(BuildContext context, String message) async {
               ],
             ),
           ),
-
         ],
       ),
     ),
   );
   return result;
 }
+
 Future<int> updateCounter() async {
   final firestore = FirebaseFirestore.instance;
   final docRef = firestore.collection('counters').doc("gEuCzlO3y9qFuvHDKD34");
@@ -372,11 +437,11 @@ Future<int> updateCounter() async {
 }
 
 Future<void> insertToOrders(
-    int assetCode,
-    int quantity,
-    double price,
-    bool isPurchase,
-    ) async {
+  int assetCode,
+  int quantity,
+  double price,
+  bool isPurchase,
+) async {
   final firestore = FirebaseFirestore.instance;
   final collectionRef = firestore.collection('orders');
 
@@ -388,8 +453,8 @@ Future<void> insertToOrders(
     'price': price,
     'isPurchase': isPurchase,
     'date': FieldValue.serverTimestamp(),
-    'uid':sp.getString('uid'),
-    'idCounter':id,
+    'uid': sp.getString('uid'),
+    'idCounter': id,
   };
 
   try {

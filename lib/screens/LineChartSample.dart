@@ -11,30 +11,40 @@ class LineChartSample extends StatefulWidget {
 }
 
 class _LineChartSampleState extends State<LineChartSample> {
-  List<DataPoint> dataPoints = [];
+  List<DataPoint> dataPoints = [
+    DataPoint(predictedPrice: 42.37722432, actualPrice: 38.25),
+    DataPoint(predictedPrice: 39.69123031, actualPrice: 39.25),
+    DataPoint(predictedPrice: 39.50238009, actualPrice: 39.3),
+    DataPoint(predictedPrice: 39.40775825, actualPrice: 38.8),
+    DataPoint(predictedPrice: 39.42037957, actualPrice: 38.45),
+    DataPoint(predictedPrice: 39.45491306, actualPrice: 38.25),
+    DataPoint(predictedPrice: 39.54533256, actualPrice: 38.3),
+    DataPoint(predictedPrice: 39.64725413),
+    DataPoint(predictedPrice: 39.78153244),
+    DataPoint(predictedPrice: 39.89142461),
+  ];
 
   @override
   void initState() {
     super.initState();
-    loadData();
+    //loadData();
   }
 
   void loadData() async {
     dataPoints = await DataPoint.loadData();
     setState(() {});
+    print('dd ${dataPoints.length}');
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: Container(
         color: const Color(0xff0E1210),
         width: double.infinity,
         child: SafeArea(
           child: Column(
             children: [
-
               const SizedBox(height: 20),
               const Align(
                 alignment: Alignment.topRight,
@@ -51,35 +61,56 @@ class _LineChartSampleState extends State<LineChartSample> {
                 ),
               ),
               const SizedBox(height: 20),
-              GestureDetector(
-                onTap: (){
-                  navigateTo(context, Information());
-
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(14),
-                  child: Row(
-                    children: [
-
-                      Image.asset('img/stcMain.png'),
-                      SizedBox(width: 10,),
-                      Column(
+              Row(
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      navigateTo(context, Information());
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(14),
+                      child: Row(
                         children: [
-                          Text('٤١٫٩٥ ر.س',style: TextStyle(fontSize: 20,color: Colors.white,fontWeight:FontWeight.w800 ),),
-                          Text('⬍ اليوم + ٢٫٣٥ (١٫٩٠٪)',style: TextStyle(fontSize: 14,color: Colors.green,fontWeight:FontWeight.w800 ),),
+                          Image.asset('img/stcMain.png'),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Column(
+                            children: [
+                              Text(
+                                '٤١٫٩٥ ر.س',
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w800),
+                              ),
+                              Text(
+                                '⬍ اليوم + ٢٫٣٥ (١٫٩٠٪)',
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.green,
+                                    fontWeight: FontWeight.w800),
+                              ),
+                            ],
+                          ),
                         ],
                       ),
-                      Spacer(),
-
-                      Image.asset('img/filter.png',width: 30,height: 30,)
-
-                    ],
+                    ),
                   ),
-                ),
+                  Spacer(),
+                  Padding(
+                      padding: EdgeInsets.only(left: 30),
+                      child: Image.asset(
+                        'img/filter.png',
+                        width: 30,
+                        height: 30,
+                      ))
+                ],
               ),
               Center(
                 child: SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.5, // Makes the chart take half the height of the screen
+                  height: MediaQuery.of(context).size.height *
+                      0.5, // Makes the chart take half the height of the screen
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: LineChart(
@@ -92,35 +123,56 @@ class _LineChartSampleState extends State<LineChartSample> {
                             sideTitles: SideTitles(
                               showTitles: true,
                               getTitlesWidget: (value, meta) {
-                                const days = ['الاحد', 'الاثنين', 'الثلاثاء', 'الاربعاء', 'الخميس']; // Days of the week
-                                return Text(days[value.toInt() % days.length], style: TextStyle(color: Color(0xFF977927),fontSize: 10),);
+                                const days = [
+                                  'الاحد',
+                                  'الاثنين',
+                                  'الثلاثاء',
+                                  'الاربعاء',
+                                  'الخميس'
+                                ]; // Days of the week
+                                return Text(
+                                  days[value.toInt() % days.length],
+                                  style: TextStyle(
+                                      color: Color(0xFF977927),
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold),
+                                );
                               },
                               reservedSize: 30,
                               interval: 1, // Show each label
                             ),
                           ),
                           topTitles: AxisTitles(
-                            sideTitles: SideTitles(showTitles: false), // No titles on top
+                            sideTitles: SideTitles(
+                                showTitles: false), // No titles on top
                           ),
                           rightTitles: AxisTitles(
-                            sideTitles: SideTitles(showTitles: false), // No titles on right
+                            sideTitles: SideTitles(
+                                showTitles: false), // No titles on right
                           ),
                           leftTitles: AxisTitles(
                             sideTitles: SideTitles(
                               showTitles: true,
-                              getTitlesWidget: (value, meta) => Text(value.toInt().toString(), style: TextStyle(color: Color.fromARGB(255, 255, 255, 255))),
+                              getTitlesWidget: (value, meta) => Text(
+                                  value.toInt().toString(),
+                                  style: TextStyle(
+                                      color:
+                                          Color.fromARGB(255, 255, 255, 255))),
                               interval: 10,
                             ),
                           ),
                         ),
                         borderData: FlBorderData(
                           show: true,
-                          border: Border.all(color: Color.fromARGB(255, 67, 67, 67), width: 1),
+                          border: Border.all(
+                              color: Color.fromARGB(255, 67, 67, 67), width: 1),
                         ),
                         lineBarsData: [
                           LineChartBarData(
                             spots: dataPoints
-                                .map((dataPoint) => FlSpot(dataPoints.indexOf(dataPoint).toDouble(), dataPoint.predictedPrice))
+                                .map((dataPoint) => FlSpot(
+                                    dataPoints.indexOf(dataPoint).toDouble(),
+                                    dataPoint.predictedPrice))
                                 .toList(),
                             isCurved: true,
                             color: Color(0xFFC7BF76),
@@ -131,8 +183,11 @@ class _LineChartSampleState extends State<LineChartSample> {
                           ),
                           LineChartBarData(
                             spots: dataPoints
-                                .where((dataPoint) => dataPoint.actualPrice != null)
-                                .map((dataPoint) => FlSpot(dataPoints.indexOf(dataPoint).toDouble(), dataPoint.actualPrice!))
+                                .where((dataPoint) =>
+                                    dataPoint.actualPrice != null)
+                                .map((dataPoint) => FlSpot(
+                                    dataPoints.indexOf(dataPoint).toDouble(),
+                                    dataPoint.actualPrice!))
                                 .toList(),
                             isCurved: true,
                             color: Color(0xFF155C2F), // Custom green color
@@ -142,104 +197,144 @@ class _LineChartSampleState extends State<LineChartSample> {
                             belowBarData: BarAreaData(show: false),
                           ),
                         ],
-                        backgroundColor: Color(0xFF0F110F), // Dark mode background
+                        backgroundColor:
+                            Color(0xFF0F110F), // Dark mode background
                       ),
                     ),
                   ),
                 ),
               ),
-
               Padding(
-                padding: const EdgeInsets.only(right:60.0,left: 60),
+                padding: const EdgeInsets.only(right: 60.0, left: 60),
                 child: Column(
                   children: [
                     Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
                       children: [
-                      Row(children: [
-                        GestureDetector(
-                          onTap:(){
-                            _showDialogWithInfo(context,'السعر الفعلي','يمثل اللون الاخضر بالبيان السعر الفعلي للسهم في الفترة المعروضة');
-                          },
-                          child: Container(
-                            width: 40,
-                            height: 15,
-
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10.0),
-                              color: Color(0xff0d5536),
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 10,),
-                        Text('السعر الفعلي',style: TextStyle(color: Color(0xff868686),fontSize: 16,fontWeight: FontWeight.w700),)
-                      ],),
-                        Row(children: [
-                          GestureDetector(
-                            onTap:(){
-                              _showDialogWithInfo(context,'السعر المتوقع','يمثل اللون الذهبي بالبيان السعر المتوقع للسهم في الفترة المعروضة');
-                            },
-                            child: Container(
-                              width: 40,
-                              height: 15,
-
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.0),
-                                color: Color(0xffD8C97D),
+                        Row(
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                _showDialogWithInfo(context, 'السعر الفعلي',
+                                    'يمثل اللون الاخضر بالبيان السعر الفعلي للسهم في الفترة المعروضة');
+                              },
+                              child: Container(
+                                width: 40,
+                                height: 15,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  color: Color(0xff0d5536),
+                                ),
                               ),
                             ),
-                          ),
-                          SizedBox(width: 10,),
-                          Text('السعر المتوقع',style: TextStyle(color: Color(0xff868686),fontSize: 16,fontWeight: FontWeight.w700),)
-                        ],),
-                    ],),
-                    SizedBox(height: 25,),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              'السعر الفعلي',
+                              style: TextStyle(
+                                  color: Color(0xff868686),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w700),
+                            )
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                _showDialogWithInfo(context, 'السعر المتوقع',
+                                    'يمثل اللون الذهبي بالبيان السعر المتوقع للسهم في الفترة المعروضة');
+                              },
+                              child: Container(
+                                width: 40,
+                                height: 15,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  color: Color(0xffD8C97D),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              'السعر المتوقع',
+                              style: TextStyle(
+                                  color: Color(0xff868686),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w700),
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 25,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        Row(children: [
-                          GestureDetector(
-                            onTap:(){
-                              _showDialogWithInfo(context,'السعر','يُعتبر السعر نقطة البداية في الرسم البياني، وهو القيمة التي يتم بيع وشراء السهم عندها في فترة زمنية محددة.');
-                            },
-                            child: Container(
-                              width: 40,
-                              height: 15,
-
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.0),
-                                color: Color(0xffffffff),
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: 10,),
-                          Text('سعر السهم',style: TextStyle(color: Color(0xff868686),fontSize: 16,fontWeight: FontWeight.w700),)
-                        ],),
                         Row(
-
                           children: [
-                          GestureDetector(
-                            onTap:(){
-                              _showDialogWithInfo(context,'الزمن','يُمثل المحور الأفقي في الرسم البياني، ويعكس الفترة الزمنية التي يتم تحليلها.');
-                            },
-                            child: Container(
-                              width: 40,
-                              height: 15,
-
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.0),
-                                color: Color(0xffA27D27),
+                            GestureDetector(
+                              onTap: () {
+                                _showDialogWithInfo(context, 'السعر',
+                                    'يُعتبر السعر نقطة البداية في الرسم البياني، وهو القيمة التي يتم بيع وشراء السهم عندها في فترة زمنية محددة.');
+                              },
+                              child: Container(
+                                width: 40,
+                                height: 15,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  color: Color(0xffffffff),
+                                ),
                               ),
                             ),
-                          ),
-                          SizedBox(width: 10,),
-                          Text('الزمن          ',style: TextStyle(color: Color(0xff868686),fontSize: 16,fontWeight: FontWeight.w700),)
-
-                        ],)
-                      ],),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              'سعر السهم',
+                              style: TextStyle(
+                                  color: Color(0xff868686),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w700),
+                            )
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                _showDialogWithInfo(context, 'الزمن',
+                                    'يُمثل المحور الأفقي في الرسم البياني، ويعكس الفترة الزمنية التي يتم تحليلها.');
+                              },
+                              child: Container(
+                                width: 40,
+                                height: 15,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  color: Color(0xffA27D27),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              'الزمن          ',
+                              style: TextStyle(
+                                  color: Color(0xff868686),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w700),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
                   ],
                 ),
               )
@@ -251,38 +346,34 @@ class _LineChartSampleState extends State<LineChartSample> {
   }
 }
 
-
-
-_showDialogWithInfo(BuildContext context,String title,String desc){
-showDialog(
-context: context,
-builder: (context) => AlertDialog(
-backgroundColor: const Color(0xff30A146),
-title:
-Column(
-  crossAxisAlignment: CrossAxisAlignment.start,
-  children: [
-    Align(
-      alignment: Alignment.center,
-      child: Text(
-        title,
-        style: TextStyle(
-          color: Color(0xffffffff),
-          fontWeight: FontWeight.bold,
-          fontSize: 14,
-        ),
-      ),
-    ),
-    Text(
-      desc,
-      style: TextStyle(
-        color: Color(0xffffffff),
-        fontWeight: FontWeight.bold,
-        fontSize: 14,
-      ),
-    ),
-
-  ],
-),
-));
+_showDialogWithInfo(BuildContext context, String title, String desc) {
+  showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+            backgroundColor: const Color(0xff30A146),
+            title: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    title,
+                    style: TextStyle(
+                      color: Color(0xffffffff),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                    ),
+                  ),
+                ),
+                Text(
+                  desc,
+                  style: TextStyle(
+                    color: Color(0xffffffff),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14,
+                  ),
+                ),
+              ],
+            ),
+          ));
 }

@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
           seedColor: Colors.white,
         ),
       ),
-      home:  SplashPage(),
+      home: SplashPage(),
     );
   }
 }
@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
   TextStyle optionStyle = const TextStyle(
       fontSize: 30, fontWeight: FontWeight.w500, color: Color(0xff30A146));
   final List<Widget> _children = [
-     LineChartSample(),
+    LineChartSample(),
     const Home(),
     const Wallet(),
     const Setting(),
@@ -121,7 +121,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-
-
-

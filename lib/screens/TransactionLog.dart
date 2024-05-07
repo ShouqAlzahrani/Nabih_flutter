@@ -18,19 +18,21 @@ class _TransactionLogState extends State<TransactionLog> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 0), () async {
-   _transactions= await  readFromFirestore();
-   setState(() {
-
-   });
+      _transactions = await readFromFirestore();
+      setState(() {});
     });
   }
+
   Future<List<OrdersTransaction>> readFromFirestore() async {
     final firestore = FirebaseFirestore.instance;
     final collectionRef = firestore.collection('orders');
     final SharedPreferences sp = await SharedPreferences.getInstance();
-    final querySnapshot = await collectionRef.where('uid', isEqualTo: sp.getString('uid')).get();
+    final querySnapshot =
+        await collectionRef.where('uid', isEqualTo: sp.getString('uid')).get();
 
-    final dataList = querySnapshot.docs.map((doc) => OrdersTransaction.fromFirestore(doc)).toList();
+    final dataList = querySnapshot.docs
+        .map((doc) => OrdersTransaction.fromFirestore(doc))
+        .toList();
 
     return dataList;
   }
@@ -68,8 +70,10 @@ class _TransactionLogState extends State<TransactionLog> {
               const SizedBox(height: 20),
               Container(
                 height: 50,
-                decoration: const BoxDecoration(color: Color(0xff024232), borderRadius: BorderRadius.all(Radius.circular(16))),
-                child:  Row(
+                decoration: const BoxDecoration(
+                    color: Color(0xff024232),
+                    borderRadius: BorderRadius.all(Radius.circular(16))),
+                child: Row(
                   children: [
                     SizedBox(width: 20),
                     Expanded(
@@ -113,20 +117,24 @@ class _TransactionLogState extends State<TransactionLog> {
                 ),
               ),
               const SizedBox(height: 20),
-
               Expanded(
                 child: ListView.separated(
                   itemCount: _transactions.length,
                   itemBuilder: (context, index) {
                     final transaction = _transactions[index];
-                    String companyName='';
-                    if(transaction.assetCode==1)companyName="شركة الاتصالات السعودية (STC) ";
-                    if(transaction.assetCode==2)companyName='شركة زين السعودية (Zain) ';
-                    if(transaction.assetCode==3)companyName='شركة موبايلي السعودية (Mobily) ';
+                    String companyName = '';
+                    if (transaction.assetCode == 1)
+                      companyName = "شركة الاتصالات السعودية (STC) ";
+                    if (transaction.assetCode == 2)
+                      companyName = 'شركة زين السعودية (Zain) ';
+                    if (transaction.assetCode == 3)
+                      companyName = 'شركة موبايلي السعودية (Mobily) ';
                     return Container(
                       height: 85,
-                      decoration: const BoxDecoration(color: Color.fromARGB(255, 1, 46, 35), borderRadius: BorderRadius.all(Radius.circular(15))),
-                      child:  Padding(
+                      decoration: const BoxDecoration(
+                          color: Color.fromARGB(255, 1, 46, 35),
+                          borderRadius: BorderRadius.all(Radius.circular(15))),
+                      child: Padding(
                         padding: EdgeInsets.all(8.0),
                         child: Column(
                           children: [
@@ -155,7 +163,7 @@ class _TransactionLogState extends State<TransactionLog> {
                             Row(
                               children: [
                                 Text(
-                                 transaction.isPurchase? 'شراء':'بيع',
+                                  transaction.isPurchase ? 'شراء' : 'بيع',
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w500,
@@ -175,7 +183,7 @@ class _TransactionLogState extends State<TransactionLog> {
                                 ),
                                 Spacer(),
                                 Text(
-                                 transaction.price.toStringAsFixed(2),
+                                  transaction.price.toStringAsFixed(2),
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w500,
@@ -200,10 +208,10 @@ class _TransactionLogState extends State<TransactionLog> {
                       ),
                     );
                   },
-                  separatorBuilder: (context, index) => const Divider(), // Simple divider between items
+                  separatorBuilder: (context, index) =>
+                      const Divider(), // Simple divider between items
                 ),
               ),
-
             ],
           ),
         ),
