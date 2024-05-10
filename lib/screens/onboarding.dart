@@ -161,27 +161,6 @@ class OnboardingScreen extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  // Padding(
-                                  //   padding: const EdgeInsets.all(8.0),
-                                  //   child: Container(
-                                  //     height: 30,
-                                  //     decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
-                                  //     child: MaterialButton(
-                                  //       height: 10,
-                                  //       minWidth: double.infinity,
-                                  //       onPressed: () {
-                                  //         _pageController.nextPage(
-                                  //           duration: const Duration(milliseconds: 500),
-                                  //           curve: Curves.ease,
-                                  //         );
-                                  //       },
-                                  //       child: const Text(
-                                  //         'استمرار',
-                                  //         style: TextStyle(color: Color(0xff165d31), fontWeight: FontWeight.bold, fontSize: 16),
-                                  //       ),
-                                  //     ),
-                                  //   ),
-                                  // ),
                                 ],
                               ),
                               onPressed: () {
@@ -197,7 +176,7 @@ class OnboardingScreen extends StatelessWidget {
                       Column(
                         children: [
                           const Text(
-                            'سؤال 2 من 4 ',
+                            'سؤال ٢ من ٤ ',
                             style: TextStyle(
                                 color: Color(0xff27944a), fontSize: 20),
                           ),
@@ -322,27 +301,6 @@ class OnboardingScreen extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  // Padding(
-                                  //   padding: const EdgeInsets.all(8.0),
-                                  //   child: Container(
-                                  //     height: 30,
-                                  //     decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
-                                  //     child: MaterialButton(
-                                  //       height: 10,
-                                  //       minWidth: double.infinity,
-                                  //       onPressed: () {
-                                  //         _pageController.nextPage(
-                                  //           duration: const Duration(milliseconds: 500),
-                                  //           curve: Curves.ease,
-                                  //         );
-                                  //       },
-                                  //       child: const Text(
-                                  //         'استمرار',
-                                  //         style: TextStyle(color: Color(0xff165d31), fontWeight: FontWeight.bold, fontSize: 16),
-                                  //       ),
-                                  //     ),
-                                  //   ),
-                                  // ),
                                 ],
                               ),
                               onPressed: () {
@@ -358,7 +316,7 @@ class OnboardingScreen extends StatelessWidget {
                       Column(
                         children: [
                           const Text(
-                            'سؤال 3 من 4 ',
+                            'سؤال ٣ من ٤ ',
                             style: TextStyle(
                                 color: Color(0xff27944a), fontSize: 20),
                           ),
@@ -368,7 +326,7 @@ class OnboardingScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(20)),
                             child: OnboardingPage(
                               color: const Color(0xff0B5136),
-                              text: 'هدفك مكن انشاء المحفظة ؟',
+                              text: 'هدفك من انشاء المحفظة ؟',
                               widget: Column(
                                 children: [
                                   Padding(
@@ -427,30 +385,6 @@ class OnboardingScreen extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  // const SizedBox(
-                                  //   height: 70,
-                                  // ),
-                                  // Padding(
-                                  //   padding: const EdgeInsets.all(8.0),
-                                  //   child: Container(
-                                  //     height: 30,
-                                  //     decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
-                                  //     child: MaterialButton(
-                                  //       height: 10,
-                                  //       minWidth: double.infinity,
-                                  //       onPressed: () {
-                                  //         _pageController.nextPage(
-                                  //           duration: const Duration(milliseconds: 500),
-                                  //           curve: Curves.ease,
-                                  //         );
-                                  //       },
-                                  //       child: const Text(
-                                  //         'استمرار',
-                                  //         style: TextStyle(color: Color(0xff165d31), fontWeight: FontWeight.bold, fontSize: 16),
-                                  //       ),
-                                  //     ),
-                                  //   ),
-                                  // ),
                                 ],
                               ),
                               onPressed: () {
@@ -466,7 +400,7 @@ class OnboardingScreen extends StatelessWidget {
                       Column(
                         children: [
                           const Text(
-                            'سؤال 4 من 4 ',
+                            'سؤال ٤ من ٤ ',
                             style: TextStyle(
                                 color: Color(0xff27944a), fontSize: 20),
                           ),
@@ -569,27 +503,6 @@ class OnboardingScreen extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  // const SizedBox(
-                                  //   height: 40,
-                                  // ),
-                                  // Padding(
-                                  //   padding: const EdgeInsets.all(8.0),
-                                  //   child: Container(
-                                  //     height: 30,
-                                  //     decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
-                                  //     child: MaterialButton(
-                                  //       height: 10,
-                                  //       minWidth: double.infinity,
-                                  //       onPressed: () {
-                                  //         // navigateTo(context, const Auth());
-                                  //       },
-                                  //       child: const Text(
-                                  //         'استمرار',
-                                  //         style: TextStyle(color: Color(0xff165d31), fontWeight: FontWeight.bold, fontSize: 16),
-                                  //       ),
-                                  //     ),
-                                  //   ),
-                                  // ),
                                 ],
                               ),
                               onPressed: () {

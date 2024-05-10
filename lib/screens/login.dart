@@ -1,5 +1,3 @@
-
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -7,11 +5,9 @@ import 'package:flutter/widgets.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:nabih/widgets/MainButton.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'done.dart';
 import '../main.dart';
 import 'register.dart';
-
 
 final _formKey = GlobalKey<FormState>();
 
@@ -138,8 +134,7 @@ class Login extends StatelessWidget {
                         ),
                         Align(
                           alignment: Alignment.center,
-                          child:
-                          SizedBox(
+                          child: SizedBox(
                               width: 220,
                               height: 50,
                               child: Container(
@@ -149,28 +144,34 @@ class Login extends StatelessWidget {
                                   color: Color(0xff0d5536),
                                 ),
                                 child: MaterialButton(
-                                  onPressed: ()async {
-print('login attempt');
+                                  onPressed: () async {
+                                    print('login attempt');
                                     try {
-                                      User userDetails = (await FirebaseAuth.instance.signInWithEmailAndPassword(
-                                          email: _emailController.text, password: _passwordController.text))
+                                      User userDetails = (await FirebaseAuth
+                                              .instance
+                                              .signInWithEmailAndPassword(
+                                                  email: _emailController.text,
+                                                  password:
+                                                      _passwordController.text))
                                           .user!;
 
                                       if (userDetails != null) {
-
-
-
                                         await FirebaseFirestore.instance
                                             .collection('users')
                                             .doc(userDetails.uid)
                                             .get()
-                                            .then((DocumentSnapshot snap) async {
+                                            .then(
+                                                (DocumentSnapshot snap) async {
                                           final SharedPreferences sp =
-                                          await SharedPreferences.getInstance();
-                                          sp.setString('full_name', snap['full_name']);
+                                              await SharedPreferences
+                                                  .getInstance();
+                                          sp.setString(
+                                              'full_name', snap['full_name']);
                                           sp.setString('uid', userDetails.uid);
-                                          sp.setString('username', snap['username']);
-                                          sp.setString('email', userDetails.email!);
+                                          sp.setString(
+                                              'username', snap['username']);
+                                          sp.setString(
+                                              'email', userDetails.email!);
                                           sp.setBool('signed_in', true);
                                           Navigator.pushReplacement<void, void>(
                                             context,
@@ -179,22 +180,25 @@ print('login attempt');
                                                   Done(),
                                             ),
                                           );
-                                        }); }
-                                      else {
+                                        });
+                                      } else {
                                         print('failed ');
-                                        ScaffoldMessenger.of(context).showSnackBar(
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
                                           SnackBar(
-                                            content: Text('فشل تسجيل الدخول.يرجي مراجعة البيانات'),
+                                            content: Text(
+                                                'فشل تسجيل الدخول.يرجي مراجعة البيانات'),
                                             // backgroundColor: Colors.red, // Or any suitable error color
                                           ),
                                         );
                                       }
-
                                     } on FirebaseAuthException catch (e) {
                                       print('failed ');
-                                      ScaffoldMessenger.of(context).showSnackBar(
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
                                         SnackBar(
-                                          content: Text('فشل تسجيل الدخول.يرجي مراجعة البيانات'),
+                                          content: Text(
+                                              'فشل تسجيل الدخول.يرجي مراجعة البيانات'),
                                           // backgroundColor: Colors.red, // Or any suitable error color
                                         ),
                                       );
@@ -211,28 +215,27 @@ print('login attempt');
                                   ),
                                 ),
                               )),
-
-
-
                         ),
                         Center(
                           child: Padding(
                             padding: EdgeInsets.all(1),
                             child: GestureDetector(
-                              child: Text('ليس لديك حساب ؟',
+                              child: Text(
+                                'ليس لديك حساب ؟',
                                 style: TextStyle(
                                   decoration: TextDecoration.underline,
-                                  color: Theme.of(context).primaryColor,
-                                  fontSize: 18,
+                                  color: Colors.white,
+                                  fontSize: 20,
                                 ),
                               ),
-                              onTap: ()async {
-
-                                await  Navigator.push(context, MaterialPageRoute(
-                                    builder: (context) => Register()));
+                              onTap: () async {
+                                await Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Register()));
                               },
-                            )
-                            ,),
+                            ),
+                          ),
                         ),
                         const SizedBox(
                           height: 60,
@@ -243,7 +246,7 @@ print('login attempt');
                             style: TextStyle(
                               color: Color(0xffffffff),
                               fontWeight: FontWeight.w400,
-                              fontSize: 15,
+                              fontSize: 19,
                             ),
                           ),
                         ),
@@ -254,7 +257,6 @@ print('login attempt');
                       ],
                     ),
                   ),
-
                 ],
               ),
             )));

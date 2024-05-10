@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +6,6 @@ import 'package:nabih/main.dart';
 import 'package:nabih/screens/login.dart';
 import 'package:nabih/screens/start.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'register.dart';
 
 class SplashPage extends StatefulWidget {
@@ -67,11 +65,6 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    // _controller = AnimationController(
-    //   duration: const Duration(milliseconds: 15000),
-    //   vsync: this,
-    // );
-    // _controller.forward();
 
     Future.delayed(const Duration(seconds: 7), () {
       afterSplash();

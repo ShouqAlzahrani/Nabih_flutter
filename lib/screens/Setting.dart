@@ -79,49 +79,6 @@ class _SettingState extends State<Setting> {
                 const SizedBox(
                   height: 20,
                 ),
-                // Row(
-                //   children: [
-                //     SvgPicture.asset('img/Vectorsa.svg'),
-                //     const SizedBox(
-                //       height: 10,
-                //     ),
-                //     const Text(
-                //       'الحساب',
-                //       style: TextStyle(
-                //         color: Color(0xff024232),
-                //         fontWeight: FontWeight.bold,
-                //         fontSize: 26,
-                //       ),
-                //     ),
-                //   ],
-                // ),
-                // const SizedBox(
-                //   height: 10,
-                // ),
-                // InkWell(
-                //   onTap: () {
-                //     navigateTo(context, const Edit());
-                //   },
-                //   child: const Text(
-                //     'تعديل المعلومات الشخصية',
-                //     style: TextStyle(
-                //       color: Colors.white,
-                //       fontWeight: FontWeight.bold,
-                //       fontSize: 26,
-                //     ),
-                //   ),
-                // ),
-                // const Text(
-                //   'تغيير كلمة المرور',
-                //   style: TextStyle(
-                //     color: Colors.white,
-                //     fontWeight: FontWeight.bold,
-                //     fontSize: 26,
-                //   ),
-                // ),
-                // const SizedBox(
-                //   height: 20,
-                // ),
                 Row(
                   children: [
                     SvgPicture.asset('img/Vector11.svg'),

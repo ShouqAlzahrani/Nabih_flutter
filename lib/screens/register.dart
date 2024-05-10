@@ -6,7 +6,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:nabih/widgets/bottomNavigationBar.dart';
 import 'package:nabih/main.dart';
 import 'package:nabih/widgets/MainButton.dart';
-
 import 'done.dart';
 
 final _formKey = GlobalKey<FormState>();
@@ -93,8 +92,8 @@ class Register extends StatelessWidget {
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'الرجاء إدخال اسم المستخدم';
-                        } else if (value.length < 4) {
-                          return 'يجب أن يتكون اسم المستخدم من 4 أحرف على الأقل';
+                        } else if (value.length < 3) {
+                          return 'يجب أن يتكون اسم المستخدم من ٣ أحرف على الأقل';
                         }
                         return null;
                       },

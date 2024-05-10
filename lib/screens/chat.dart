@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:nabih/core/Route.dart';
-
 import 'detailsChat.dart';
 
 class Chat extends StatelessWidget {
@@ -10,7 +9,10 @@ class Chat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(backgroundColor: const Color(0xff30a146), onPressed: () {}, child: SvgPicture.asset('img/Add.svg')),
+      floatingActionButton: FloatingActionButton(
+          backgroundColor: const Color(0xff30a146),
+          onPressed: () {},
+          child: SvgPicture.asset('img/Add.svg')),
       body: Container(
         width: double.infinity,
         color: const Color(0xff0E1210),
@@ -44,7 +46,11 @@ class Chat extends StatelessWidget {
                   onTap: () {
                     navigateTo(context, const DetailsChat());
                   },
-                  child: buildItem(name: 'تركي ال الشيخ', massage: "تبشرين", tame: "منذ ساعه", image: 'img/tu.png'),
+                  child: buildItem(
+                      name: 'تركي ال الشيخ',
+                      massage: "تبشرين",
+                      tame: "منذ ساعه",
+                      image: 'img/tu.png'),
                 ),
                 const Padding(
                   padding: EdgeInsets.only(left: 10, right: 10),
@@ -53,7 +59,11 @@ class Chat extends StatelessWidget {
                     color: Color(0xffCBB768),
                   ),
                 ),
-                buildItem(name: 'نوره القرني', massage: 'السوق مو مره تمام', tame: "منذ ساعه", image: 'img/tu3.png'),
+                buildItem(
+                    name: 'نوره القرني',
+                    massage: 'السوق مو مره تمام',
+                    tame: "منذ ساعه",
+                    image: 'img/tu3.png'),
                 const Padding(
                   padding: EdgeInsets.only(left: 10, right: 10),
                   child: Divider(
@@ -61,7 +71,11 @@ class Chat extends StatelessWidget {
                     color: Color(0xffCBB768),
                   ),
                 ),
-                buildItem(name: 'غلا المالكي ', massage: 'كم سعر سهم stc', tame: "منذ ساعه", image: 'img/tu4.png'),
+                buildItem(
+                    name: 'غلا المالكي ',
+                    massage: 'كم سعر سهم stc',
+                    tame: "منذ ساعه",
+                    image: 'img/tu4.png'),
                 const Padding(
                   padding: EdgeInsets.only(left: 10, right: 10),
                   child: Divider(
@@ -69,7 +83,11 @@ class Chat extends StatelessWidget {
                     color: Color(0xffCBB768),
                   ),
                 ),
-                buildItem(name: 'غلا المالكي ', massage: 'كيف الاسهم معاك؟', tame: "منذ ساعه", image: 'img/tu5.png'),
+                buildItem(
+                    name: 'غلا المالكي ',
+                    massage: 'كيف الاسهم معاك؟',
+                    tame: "منذ ساعه",
+                    image: 'img/tu5.png'),
               ],
             ),
           ),
@@ -124,7 +142,9 @@ buildItem({
               ),
             ),
             Container(
-              decoration: BoxDecoration(color: const Color(0xff30A146), borderRadius: BorderRadius.circular(20)),
+              decoration: BoxDecoration(
+                  color: const Color(0xff30A146),
+                  borderRadius: BorderRadius.circular(20)),
               child: const Padding(
                 padding: EdgeInsets.all(4.0),
                 child: Text(
