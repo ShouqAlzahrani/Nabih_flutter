@@ -8,8 +8,12 @@ import 'package:nabih/screens/register.dart';
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
+<<<<<<< HEAD
   testWidgets('Registration button navigates to registration screen',
       (WidgetTester tester) async {
+=======
+  testWidgets('Registration button navigates to registration screen', (WidgetTester tester) async {
+>>>>>>> refs/remotes/Nabih/main
     await tester.pumpWidget(MaterialApp(home: Login()));
     await tester.pumpAndSettle();
 
@@ -19,4 +23,8 @@ void main() {
 
     expect(find.byType(Register), findsOneWidget);
   });
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> refs/remotes/Nabih/main
