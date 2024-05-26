@@ -9,7 +9,6 @@ class Information extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xff0E1210),
       body: Stack(
-
         children: [
           Positioned(
             top: 50.0, // Adjust top padding as needed
@@ -20,7 +19,7 @@ class Information extends StatelessWidget {
               icon: RotatedBox(
                 quarterTurns: 2, // Rotate 180 degrees (2 quarter turns)
                 child: Icon(Icons.arrow_back), // Your icon
-              ),// Use the Icons.arrow_back icon
+              ), // Use the Icons.arrow_back icon
               onPressed: () => Navigator.pop(context), // Pop the current screen
             ),
           ),
@@ -54,13 +53,13 @@ class Information extends StatelessWidget {
                       context: context,
                       title: 'التعريف',
                       text: ' شركة رائدة في مجال الاتصالات في السعودية',
-                      widget:  Column(
+                      widget: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Align(
                             alignment: Alignment.center,
                             child: Text(
-                              'مكرر الارباح',
+                              'التعريف',
                               style: TextStyle(
                                 color: Color(0xffffffff),
                                 fontWeight: FontWeight.bold,
@@ -69,23 +68,7 @@ class Information extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            '- يقيس مكرر الأرباح علاقة سعر السهم إلى أرباح السهم.',
-                            style: TextStyle(
-                              color: Color(0xffffffff),
-                              fontWeight: FontWeight.bold,
-                              fontSize: 14,
-                            ),
-                          ),
-                          Text(
-                            '- يُستخدم لتحديد ما إذا كان سعر السهم مبالغًا فيه أم لا مقارنة بأرباح الشركة.',
-                            style: TextStyle(
-                              color: Color(0xffffffff),
-                              fontWeight: FontWeight.bold,
-                              fontSize: 14,
-                            ),
-                          ),
-                          Text(
-                            'يعتبر مؤشرًا على تقييم السوق لأداء الشركة.',
+                            '-شركة الاتصالات السعودية (STC) مدرجة في السوق المالي السعودي بقيمة سوقية تقدر بـ 60.8 مليار دولار وتمتلك الحكومة السعودية جزء كبير من أسهمه.',
                             style: TextStyle(
                               color: Color(0xffffffff),
                               fontWeight: FontWeight.bold,
@@ -144,7 +127,7 @@ class Information extends StatelessWidget {
                       context: context,
                       title: 'توزيع الأرباح (الربع الاول)',
                       text: '٠.٤٠ ر.س',
-                      widget:  Column(
+                      widget: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Align(
@@ -181,7 +164,7 @@ class Information extends StatelessWidget {
                       context: context,
                       title: 'عائد الارباح السنوية',
                       text: '٪ ٣.٨١ ',
-                      widget:  Column(
+                      widget: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Align(
@@ -218,7 +201,7 @@ class Information extends StatelessWidget {
                       context: context,
                       title: 'الأداء',
                       text: '٠.٧٠ ر.س',
-                      widget:  Column(
+                      widget: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Align(
@@ -255,13 +238,13 @@ class Information extends StatelessWidget {
                       context: context,
                       title: 'القيمة السوقية ',
                       text: '٣٩٨BN',
-                      widget:  Column(
+                      widget: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Align(
                             alignment: Alignment.center,
                             child: Text(
-                              'توزيع الأرباح (الربع الأول)',
+                              'القيمة السوقية',
                               style: TextStyle(
                                 color: Color(0xffffffff),
                                 fontWeight: FontWeight.bold,
@@ -270,15 +253,7 @@ class Information extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            '- يُشير إلى الأرباح التي يتم توزيعها على المساهمين في الربع الأول من السنة المالية.',
-                            style: TextStyle(
-                              color: Color(0xffffffff),
-                              fontWeight: FontWeight.bold,
-                              fontSize: 14,
-                            ),
-                          ),
-                          Text(
-                            '- يعتبر عاملًا مهمًا لجذب المستثمرين وتعزيز ثقتهم في الشركة.',
+                            '- القيمة السوقية للأسهم تعبر عن القيمة الإجمالية لجميع الأسهم المتداولة لشركة ما، وتُحسب بضرب سعر السهم الواحد في عدد الأسهم الإجمالي..',
                             style: TextStyle(
                               color: Color(0xffffffff),
                               fontWeight: FontWeight.bold,
@@ -292,7 +267,7 @@ class Information extends StatelessWidget {
                       context: context,
                       title: 'اعلى سعر',
                       text: '٤١.٨٠ ر.س',
-                      widget:  Column(
+                      widget: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Align(
@@ -321,7 +296,7 @@ class Information extends StatelessWidget {
                       context: context,
                       title: 'ادنى سعر',
                       text: '٤١.١٠ ر.س',
-                      widget:  Column(
+                      widget: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Align(
@@ -396,4 +371,3 @@ class Information extends StatelessWidget {
         ),
       );
 }
-

@@ -102,7 +102,7 @@ class Register extends StatelessWidget {
                       height: 10,
                     ),
                     const Text(
-                      'البريد الالكترومي',
+                      'البريد الالكتروني',
                       style: TextStyle(
                         color: Color(0xffffffff),
                         fontWeight: FontWeight.w400,

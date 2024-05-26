@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:nabih/main.dart';
-
 import '../widgets/onBoardingWidget.dart';
 import 'login.dart';
 
